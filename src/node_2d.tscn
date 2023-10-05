@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bghuicsgtoey6"]
+
+[ext_resource type="PackedScene" uid="uid://bk52a4mu0xnee" path="res://src/perceptron_graphic.tscn" id="1_mn1j3"]
+[ext_resource type="Texture2D" uid="uid://dfmqcodvfuqts" path="res://background.svg" id="2_ew3pn"]
+[ext_resource type="Script" path="res://scaleBackground.gd" id="2_qclam"]
+[ext_resource type="PackedScene" uid="uid://crgpntk8fyhur" path="res://panelTop.tscn" id="4_3qkai"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Perceptron" parent="." instance=ExtResource("1_mn1j3")]
+visibility_layer = 1
+position = Vector2(280, 384)
+center = false
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -99
+position = Vector2(207.75, 111.75)
+scale = Vector2(416.5, 224.5)
+texture = ExtResource("2_ew3pn")
+script = ExtResource("2_qclam")
+
+[node name="Panel" parent="." instance=ExtResource("4_3qkai")]
