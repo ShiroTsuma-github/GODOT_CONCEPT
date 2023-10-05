@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+    viewBox="0 0 200 200" width="200" height="200"
+    id="green_circle_with_black_border">
+
+    <circle cx="100" cy="100" r="96" fill="white" stroke="black"
+        stroke-width="5" />
+</svg>

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bghuicsgtoey6"]
+
+[ext_resource type="PackedScene" uid="uid://bk52a4mu0xnee" path="res://src/perceptron_graphic.tscn" id="1_mn1j3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" parent="." instance=ExtResource("1_mn1j3")]
+layer = 5
+layer_pos = 3

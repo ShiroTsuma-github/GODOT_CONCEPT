@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk52a4mu0xnee"]
+
+[ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://circle.svg" id="1_3erh4"]
+[ext_resource type="Script" path="res://src/center.gd" id="2_0s438"]
+[ext_resource type="Script" path="res://src/dynamic_vector_position.gd" id="3_mdjnp"]
+
+[node name="Vector" type="Sprite2D"]
+editor_description = "Vector graphic with layer and position inspector control"
+show_behind_parent = true
+visibility_layer = 2
+position = Vector2(512, 280)
+texture = ExtResource("1_3erh4")
+script = ExtResource("2_0s438")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.45
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -19.5
+offset_right = 48.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={80}]w[/font_size][font_size={25}]%d,%d[/font_size][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("3_mdjnp")
+metadata/_edit_use_anchors_ = true
