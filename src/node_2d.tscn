@@ -1,22 +1,464 @@
-[gd_scene load_steps=5 format=3 uid="uid://bghuicsgtoey6"]
+[gd_scene load_steps=4 format=3 uid="uid://bghuicsgtoey6"]
 
-[ext_resource type="PackedScene" uid="uid://bk52a4mu0xnee" path="res://src/perceptron_graphic.tscn" id="1_mn1j3"]
-[ext_resource type="Texture2D" uid="uid://dfmqcodvfuqts" path="res://background.svg" id="2_ew3pn"]
-[ext_resource type="Script" path="res://scaleBackground.gd" id="2_qclam"]
-[ext_resource type="PackedScene" uid="uid://crgpntk8fyhur" path="res://panelTop.tscn" id="4_3qkai"]
+[ext_resource type="Script" path="res://src/place_perceptrons.gd" id="1_mjmoc"]
+[ext_resource type="PackedScene" uid="uid://bpatolwa2i45n" path="res://src/Scenes/Layer.tscn" id="2_qijxd"]
+[ext_resource type="PackedScene" uid="uid://3lhrb41ht12" path="res://src/Scenes/Perceptron.tscn" id="3_fa7bi"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_mjmoc")
 
-[node name="Perceptron" parent="." instance=ExtResource("1_mn1j3")]
-visibility_layer = 1
-position = Vector2(280, 384)
-center = false
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1288.0
+offset_bottom = 960.0
 
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -99
-position = Vector2(207.75, 111.75)
-scale = Vector2(416.5, 224.5)
-texture = ExtResource("2_ew3pn")
-script = ExtResource("2_qclam")
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
 
-[node name="Panel" parent="." instance=ExtResource("4_3qkai")]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("2_qijxd")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="Layer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer2/Layer2" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="Layer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer3/Layer3" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer4/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer5/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer6/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer7/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="MarginContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Perceptron" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron8" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="MarginContainer/ScrollContainer/HBoxContainer/MarginContainer8/VBoxContainer" instance=ExtResource("3_fa7bi")]
+layout_mode = 2

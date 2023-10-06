@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://3lhrb41ht12"]
+
+[ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://circle.svg" id="1_ojfca"]
+[ext_resource type="Script" path="res://src/Scripts/Perceptron/Perceptron.gd" id="2_m66v4"]
+[ext_resource type="Script" path="res://src/Scripts/Perceptron/DetectPress.gd" id="3_23g0v"]
+[ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronPosition.gd" id="4_ea5sm"]
+[ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronWeight.gd" id="5_pwk1r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lg3yt"]
+radius = 48.0
+
+[node name="TextureRect" type="TextureRect"]
+editor_description = "Perceptron Graphic Implemented as Control Object"
+offset_left = 488.0
+offset_top = 400.0
+offset_right = 588.0
+offset_bottom = 500.0
+texture = ExtResource("1_ojfca")
+script = ExtResource("2_m66v4")
+display_weight = true
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("3_23g0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(50, 50)
+shape = SubResource("CircleShape2D_lg3yt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.45
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = 3.0
+offset_right = 14.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -27.5
+offset_right = 24.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={40}]w[/font_size][font_size={12}]%d,%d[/font_size][/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("4_ea5sm")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.06
+anchor_bottom = 0.06
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 55.0
+offset_bottom = 43.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 60.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={14}]%.3f[/font_size][/center]"
+scroll_active = false
+script = ExtResource("5_pwk1r")
+
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c34qmlsc2ur7r"]
+
+[ext_resource type="Texture2D" uid="uid://dfmqcodvfuqts" path="res://background.svg" id="1_kuda5"]
+[ext_resource type="Script" path="res://scaleBackground.gd" id="2_llmcv"]
+
+[node name="Background" type="Sprite2D"]
+z_index = -99
+position = Vector2(208, 112)
+scale = Vector2(416.5, 224.5)
+texture = ExtResource("1_kuda5")
+script = ExtResource("2_llmcv")

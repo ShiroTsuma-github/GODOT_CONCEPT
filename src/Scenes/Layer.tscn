@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpatolwa2i45n"]
+
+[ext_resource type="PackedScene" uid="uid://3lhrb41ht12" path="res://src/Scenes/Perceptron.tscn" id="1_0h15a"]
+[ext_resource type="Script" path="res://src/Scripts/Layer/PerceptronNumbering.gd" id="1_3o8bo"]
+
+[node name="MarginContainer" type="MarginContainer"]
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+
+[node name="Layer1" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+script = ExtResource("1_3o8bo")
+
+[node name="Perceptron" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron2" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron3" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron4" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron5" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron6" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron7" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+weight = 123.0
+
+[node name="Perceptron8" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron9" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron10" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron11" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron12" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron13" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron14" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron15" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron16" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron17" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2
+
+[node name="Perceptron18" parent="Layer1" instance=ExtResource("1_0h15a")]
+layout_mode = 2

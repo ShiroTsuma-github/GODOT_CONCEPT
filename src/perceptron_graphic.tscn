@@ -1,20 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk52a4mu0xnee"]
+[gd_scene load_steps=7 format=3 uid="uid://bk52a4mu0xnee"]
 
 [ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://circle.svg" id="1_3erh4"]
 [ext_resource type="Script" path="res://src/center.gd" id="2_0s438"]
 [ext_resource type="Script" path="res://src/detect_press.gd" id="3_di142"]
 [ext_resource type="Script" path="res://src/dynamic_vector_position.gd" id="3_mdjnp"]
+[ext_resource type="Script" path="res://src/weightDisplay.gd" id="5_h2ill"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wuq1b"]
 radius = 98.9545
 
 [node name="Perceptron" type="Sprite2D"]
-editor_description = "Vector graphic with layer and position inspector control"
+editor_description = "Perceptron graphic with layer and position inspector control"
 show_behind_parent = true
 visibility_layer = 2
-position = Vector2(848, 240)
+position = Vector2(672, 160)
 texture = ExtResource("1_3erh4")
 script = ExtResource("2_0s438")
+display_weight = true
+layer = 4
+layer_pos = 7
+weight = 18
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("3_di142")
@@ -35,7 +40,6 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 layout_mode = 1
@@ -59,7 +63,34 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 script = ExtResource("3_mdjnp")
-metadata/_edit_use_anchors_ = true
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.06
+anchor_bottom = 0.06
+offset_left = -16.0
+offset_top = -72.0
+offset_right = 12.0
+offset_bottom = -44.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={28}]%d[/font_size][/center]"
+scroll_active = false
+script = ExtResource("5_h2ill")
 
 [connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]

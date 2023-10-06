@@ -1,12 +1,10 @@
-extends Sprite2D
+extends Node2D
 
-@export var display_weight: bool = false
-@export var layer: int = 0
-@export var layer_pos: int = 0
-@export var weight: int = 11
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var size = get_viewport_rect()
+	print(size)
 	pass # Replace with function body.
 
 
