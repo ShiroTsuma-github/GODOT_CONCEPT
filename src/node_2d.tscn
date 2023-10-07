@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bghuicsgtoey6"]
+[gd_scene load_steps=3 format=3 uid="uid://bghuicsgtoey6"]
 
 [ext_resource type="Script" path="res://src/place_perceptrons.gd" id="1_mjmoc"]
 [ext_resource type="PackedScene" uid="uid://bpatolwa2i45n" path="res://src/Scenes/Layer.tscn" id="2_qijxd"]
-
-[sub_resource type="Curve" id="Curve_7lybv"]
-_data = [Vector2(0.475728, 0.315789), 0.0, 0.0, 0, 0]
-point_count = 1
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_mjmoc")
@@ -27,7 +23,7 @@ layout_mode = 2
 [node name="Layer" parent="MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("2_qijxd")]
 layout_mode = 2
 start_index = 0
-base_children_count = 3
+base_children_count = 11
 
 [node name="Layer2" parent="MarginContainer/ScrollContainer/HBoxContainer" instance=ExtResource("2_qijxd")]
 layout_mode = 2
@@ -50,10 +46,4 @@ base_children_count = 2
 layout_mode = 2
 theme_override_constants/margin_top = 165
 start_index = 10
-base_children_count = 1
-
-[node name="Line2D" type="Line2D" parent="MarginContainer"]
-z_index = -1
-points = PackedVector2Array(16, 88, 120, 136, 192, 152, 368, 216, 312, 496, 416, 392, 304, 464, 616, 320, 344, 296, 632, 328, 632, 472, 512, 392, 440, 440, 408, 528, 488, 408, 472, 232, 256, 488, 400, 592, 512, 592, 840, 576, 688, 400, 680, 360, 625.014, 512.739, 608, 560)
-width_curve = SubResource("Curve_7lybv")
-default_color = Color(0, 0, 0, 1)
+base_children_count = 2

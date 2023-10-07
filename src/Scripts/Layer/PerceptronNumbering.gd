@@ -1,9 +1,20 @@
+@tool
 extends MarginContainer
 
-@export var start_index: int = 0
-@export var base_children_count: int = 0
 @onready var layer = get_child(0)
+
+@export var start_index: int = 0
+@export var base_children_count: int = 0 :
+	get:
+		return base_children_count
+	set(value):
+		base_children_count = value
+		if Engine.is_editor_hint():
+			var layer = get_child(0)
+			recalc_perceptron_count()
+
 var base_perceptron = load("res://src/Scenes/Perceptron.tscn")
+var added_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,3 +37,17 @@ func add_perceptron():
 	new_perceptron.position_index = start_index + layer.get_child_count()
 	new_perceptron.display_weight = false
 	layer.add_child(new_perceptron)
+
+func recalc_perceptron_count():
+	var diff = base_children_count + added_count - layer.get_child_count()
+	for _i in range(diff):
+		add_perceptron()
+	
+	if diff < 0:
+		diff = -diff
+		var children = layer.get_children()
+		children.reverse()
+		for _i in range(diff):
+			# layer.remove_child(children[0])
+			children[0].queue_free()
+	
