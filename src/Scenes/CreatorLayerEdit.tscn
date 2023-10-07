@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://boy7hu4et7jeq"]
+
+[ext_resource type="Script" path="res://src/Scripts/LayerEdit/CreatorLayerEdit.gd" id="1_68t17"]
+
+[node name="LayerEdit" type="HBoxContainer"]
+theme_override_constants/separation = 20
+script = ExtResource("1_68t17")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Layer %f: "
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+tooltip_text = "Number of layers in network43"
+
+[connection signal="value_changed" from="SpinBox" to="." method="_on_spin_box_value_changed"]

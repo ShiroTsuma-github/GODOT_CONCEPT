@@ -38,7 +38,6 @@ vertical_scroll_mode = 2
 layout_mode = 2
 
 [node name="NetworkCreator" parent="." instance=ExtResource("2_sr1px")]
-visible = false
 
 [node name="InputOutput" parent="." instance=ExtResource("1_oy0vp")]
 offset_left = 1136.0
