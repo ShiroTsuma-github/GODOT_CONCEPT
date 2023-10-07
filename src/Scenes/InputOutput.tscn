@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3pmqpkvvodmj"]
+
+[ext_resource type="Texture2D" uid="uid://d4m2tf8ytlfk2" path="res://resources/square.svg" id="1_buccb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j6pn"]
+size = Vector2(100, 100)
+
+[node name="InputOutput" type="TextureRect"]
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 132.0
+offset_bottom = 116.0
+texture = ExtResource("1_buccb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(50, 50)
+shape = SubResource("RectangleShape2D_6j6pn")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 112.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={40}]U[/font_size][font_size={12}]%d[/font_size][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Control2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 76.0
+offset_bottom = 36.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 20.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={14}]%.3f[/font_size][/center]"
+scroll_active = false

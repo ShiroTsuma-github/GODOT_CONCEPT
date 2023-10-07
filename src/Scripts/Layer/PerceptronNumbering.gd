@@ -32,13 +32,18 @@ func create_perceptrons():
 	for _i in range(base_children_count):
 		add_perceptron()
 
+# Function to add new perceptron object to layer
 func add_perceptron():
+	# Instantiate loaded object
 	var new_perceptron = base_perceptron.instantiate()
+	# Set position displayed to be last child + offset from start index
 	new_perceptron.position_index = start_index + layer.get_child_count()
-	new_perceptron.display_weight = false
+	# new_perceptron.display_weight = false
 	layer.add_child(new_perceptron)
 
 func recalc_perceptron_count():
+	if layer == null:
+		return
 	var diff = base_children_count + added_count - layer.get_child_count()
 	for _i in range(diff):
 		add_perceptron()

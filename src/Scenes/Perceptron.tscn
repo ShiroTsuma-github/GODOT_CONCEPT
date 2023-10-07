@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://3lhrb41ht12"]
 
-[ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://circle.svg" id="1_ojfca"]
+[ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://resources/circle.svg" id="1_6j76k"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/Perceptron.gd" id="2_m66v4"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/DetectPress.gd" id="3_23g0v"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronPosition.gd" id="4_ea5sm"]
@@ -15,10 +15,8 @@ offset_left = 488.0
 offset_top = 400.0
 offset_right = 588.0
 offset_bottom = 500.0
-texture = ExtResource("1_ojfca")
+texture = ExtResource("1_6j76k")
 script = ExtResource("2_m66v4")
-display_weight = true
-weight = 4.0
 metadata/_edit_lock_ = true
 
 [node name="Area2D" type="Area2D" parent="."]

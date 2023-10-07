@@ -7,7 +7,6 @@ editor_description = "Layer container with add_perceptron() functionality"
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
 script = ExtResource("1_3o8bo")
-start_index = 23
 
 [node name="VerticalGrid" type="VBoxContainer" parent="."]
 layout_mode = 2

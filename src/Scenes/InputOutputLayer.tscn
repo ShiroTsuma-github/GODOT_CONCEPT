@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cu2388ltjsk1o"]
+
+[node name="InputOutputLayer" type="MarginContainer"]
+
+[node name="VerticalGrid" type="VBoxContainer" parent="."]
+layout_mode = 2
