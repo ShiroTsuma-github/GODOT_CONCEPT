@@ -10,15 +10,15 @@
 radius = 98.9545
 
 [node name="Perceptron" type="Sprite2D"]
-editor_description = "Perceptron graphic with layer and position inspector control"
+editor_description = "Perceptron graphic with position_index and position inspector control"
 show_behind_parent = true
-visibility_layer = 2
+visibility_position_index = 2
 position = Vector2(672, 160)
 texture = ExtResource("1_3erh4")
 script = ExtResource("2_0s438")
 display_weight = true
-layer = 4
-layer_pos = 7
+position_index = 4
+position_index_pos = 7
 weight = 18
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lg3yt"]
 radius = 48.0
 
-[node name="TextureRect" type="TextureRect"]
+[node name="Perceptron" type="TextureRect"]
 editor_description = "Perceptron Graphic Implemented as Control Object"
 offset_left = 488.0
 offset_top = 400.0

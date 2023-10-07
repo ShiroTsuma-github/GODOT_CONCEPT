@@ -6,9 +6,7 @@ var to_format = "[center][font_size={40}]w[/font_size][font_size={12}]%d,%d[/fon
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	parent.update_visual_data.connect(update_data)
-	var layer = parent.layer
-	var layer_pos = parent.layer_pos
-	text =  to_format % [layer,layer_pos]
+	update_data()
 
 
 
@@ -17,6 +15,6 @@ func _process(_delta):
 	pass
 
 func update_data():
-	var layer = parent.layer
-	var layer_pos = parent.layer_pos
-	text =  to_format % [layer,layer_pos]
+	var position_index = parent.position_index
+	var weight_index = parent.weight_index
+	text =  to_format % [position_index,weight_index]

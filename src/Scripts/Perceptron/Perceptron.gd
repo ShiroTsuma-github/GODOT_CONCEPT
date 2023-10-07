@@ -1,14 +1,24 @@
 extends TextureRect
 
 @export var display_weight: bool = false
-@export var layer: int = 0
-@export var layer_pos: int = 0 : 
+@export var position_index: int = 0 :
 	get:
-		return layer_pos
+		return position_index
 	set(value):
-		layer_pos = value
+		position_index = value
 		update_visual_data.emit()
-@export var weight: float = 0
+@export var weight_index: int = 0 :
+	get:
+		return weight_index
+	set(value):
+		weight_index = value
+		update_visual_data.emit()
+@export var weight: float = 0 :
+	get:
+		return weight
+	set(value):
+		weight = value
+		update_visual_data.emit()
 
 signal update_visual_data
 
@@ -22,11 +32,11 @@ func _ready():
 func _process(_delta):
 	pass
 
-func set_layer_pos(value):
-	layer_pos = value
+func set_weight_index(value):
+	weight_index = value
 
-func set_layer(value):
-	layer = value
+func set_position_index(value):
+	position_index = value
 
 func set_weight(value):
 	weight = value
