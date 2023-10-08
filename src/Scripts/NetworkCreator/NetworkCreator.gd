@@ -40,7 +40,6 @@ func add_layer_config(value):
 func remove_layer_config(value):
 	var children = layer_edit_container.get_children()
 	children.reverse()
-	print(value)
 	for i in range(value):
 		children[i].queue_free()
 	
@@ -59,8 +58,13 @@ func _on_close_requested():
 	hide()
 
 
-func _on_accept_close_button_pressed():
+func get_network_config():
 	layer_count = layer_edit_container.get_child_count()
-	print("emitting")
+	for item in layer_edit_container.get_children():
+		percpetrons_per_layer.append(item.perceptron_count)
+
+
+func _on_accept_close_button_pressed():
+	get_network_config()
 	setup_network.emit(layer_count, percpetrons_per_layer)
 	hide()

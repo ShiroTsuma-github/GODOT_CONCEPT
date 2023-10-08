@@ -29,8 +29,10 @@ func _ready():
 func forward_signal(param1, param2):
 	LayerCount = param1
 	PerceptronsPerLayer = param2
+	print(PerceptronsPerLayer)
 	Network = Base_Network.instantiate()
 	Network.perceptron_layer_count = LayerCount
+	Network.perc_per_layer = PerceptronsPerLayer
 	Scroll_Container.add_child(Network)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

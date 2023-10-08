@@ -1,5 +1,5 @@
 extends HBoxContainer
-@export var layer_count: int = 0
+@export var perceptron_count: int = 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,4 +13,4 @@ func _process(_delta):
 
 
 func _on_spin_box_value_changed(value):
-	layer_count = value
+	perceptron_count = value

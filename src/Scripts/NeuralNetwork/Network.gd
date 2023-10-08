@@ -1,6 +1,7 @@
 extends HBoxContainer
 var base_perceptron_layer = load("res://src/Scenes/Layer.tscn")
 var perceptron_layer_count: int = 0
+var perc_per_layer: Array = []
 var perceptron_count: int= 1 
 @onready var MainScene = get_tree().root.get_child(0)
 
@@ -9,8 +10,9 @@ func _ready():
 	setup()
 
 func setup():
-	for _i in range(perceptron_layer_count):
-		add_layer()
+	print(perc_per_layer)
+	for i in range(perceptron_layer_count):
+		add_layer(perc_per_layer[i])
 
 func add_layer(value=1):
 	var layer = base_perceptron_layer.instantiate()
