@@ -3,13 +3,11 @@
 [ext_resource type="Script" path="res://src/Scripts/NetworkCreator/NetworkCreator.gd" id="1_2jquf"]
 [ext_resource type="Script" path="res://src/Scripts/NetworkCreator/CreateLayerSetup.gd" id="2_fcvc8"]
 
-[node name="Window" type="Window"]
-initial_position = 2
+[node name="NetworkCreator" type="PopupPanel"]
+title = "New Network"
+initial_position = 1
 size = Vector2i(320, 500)
-transient = true
-exclusive = true
-unresizable = true
-borderless = true
+visible = true
 min_size = Vector2i(100, 100)
 max_size = Vector2i(320, 600)
 script = ExtResource("1_2jquf")
@@ -38,7 +36,6 @@ layout_mode = 2
 text = "LOAD"
 
 [node name="Creator" type="VBoxContainer" parent="MarginContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 20
 
@@ -129,7 +126,11 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Accept"
 
-[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[node name="Window" type="Window" parent="."]
+initial_position = 1
+exclusive = true
+unresizable = true
+
 [connection signal="pressed" from="MarginContainer/NewLoad/CreateNetwork" to="." method="_on_create_network_pressed"]
 [connection signal="pressed" from="MarginContainer/NewLoad/OpenFileDialog" to="." method="_on_open_file_dialog_pressed"]
 [connection signal="value_changed" from="MarginContainer/Creator/LayerSetupContainer/SpinBox" to="MarginContainer/Creator/LayerSetupContainer/Button" method="_on_spin_box_value_changed"]

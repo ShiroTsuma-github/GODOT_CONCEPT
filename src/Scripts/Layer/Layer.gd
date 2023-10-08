@@ -4,11 +4,11 @@ extends MarginContainer
 @onready var layer = get_child(0)
 
 @export var start_index: int = 0
-@export var base_children_count: int = 0 :
+@export var children_count: int = 0 :
 	get:
-		return base_children_count
+		return children_count
 	set(value):
-		base_children_count = value
+		children_count = value
 		if Engine.is_editor_hint():
 			var layer = get_child(0)
 			recalc_perceptron_count()
@@ -29,30 +29,31 @@ func _process(_delta):
 	pass
 
 func create_perceptrons():
-	for _i in range(base_children_count):
+	for _i in range(children_count):
 		add_perceptron()
 
 # Function to add new perceptron object to layer
 func add_perceptron():
 	# Instantiate loaded object
 	var new_perceptron = base_perceptron.instantiate()
-	# Set position displayed to be last child + offset from start index
 	new_perceptron.position_index = start_index + layer.get_child_count()
-	# new_perceptron.display_weight = false
 	layer.add_child(new_perceptron)
+
+func remove_perceptron():
+	# var children = layer.get_children()
+	# 	Remove last perceptron from layer
+	layer.get_children()[layer.get_child_count() - 1].queue_free()
 
 func recalc_perceptron_count():
 	if layer == null:
 		return
-	var diff = base_children_count + added_count - layer.get_child_count()
+	var diff = children_count + added_count - layer.get_child_count()
 	for _i in range(diff):
 		add_perceptron()
+		return
 	
 	if diff < 0:
 		diff = -diff
-		var children = layer.get_children()
-		children.reverse()
 		for _i in range(diff):
-			# layer.remove_child(children[0])
-			children[0].queue_free()
+			remove_perceptron()
 	

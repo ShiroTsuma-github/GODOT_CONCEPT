@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bghuicsgtoey6"]
+
+[ext_resource type="Texture2D" uid="uid://dfmqcodvfuqts" path="res://resources/background.svg" id="1_ok0wd"]
+[ext_resource type="PackedScene" uid="uid://d3pmqpkvvodmj" path="res://src/Scenes/InputOutput.tscn" id="4_d2w30"]
+
+[sub_resource type="GDScript" id="GDScript_ubcgp"]
+script/source = "extends Node2D
+
+signal create_network
+
+var LayerCount: int = 0
+var PerceptronsPerLayer: Array = []
+
+var Base_Start_Window = load(\"res://src/Scenes/NetworkCreator.tscn\")
+var Base_Network = load(\"res://src/Scenes/Network.tscn\")
+@onready var Scroll_Container = get_node(\"MarginContainer/ScrollContainer\")
+# @onready var Network = get_node(\"MarginContainer/ScrollContainer/Network\")
+var Network = null 
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var size = get_viewport_rect()
+	print(size)
+	var start_window = Base_Start_Window.instantiate()
+	start_window.setup_network.connect(forward_signal)
+	add_child(start_window)
+	pass # Replace with function body.
+
+func forward_signal(param1, param2):
+	LayerCount = param1
+	PerceptronsPerLayer = param2
+	Network = Base_Network.instantiate()
+	Network.perceptron_layer_count = LayerCount
+	Scroll_Container.add_child(Network)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+"
+
+[node name="MainScene" type="Node2D"]
+script = SubResource("GDScript_ubcgp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1288.0
+offset_bottom = 960.0
+mouse_filter = 2
+texture = ExtResource("1_ok0wd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1288.0
+offset_bottom = 960.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 200
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="InputOutput" parent="." instance=ExtResource("4_d2w30")]
+visible = false
+offset_left = 1136.0
+offset_top = 576.0
+offset_right = 1236.0
+offset_bottom = 676.0

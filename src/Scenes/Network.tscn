@@ -1,33 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://0726l0lom0wl"]
 
-[ext_resource type="PackedScene" uid="uid://bpatolwa2i45n" path="res://src/Scenes/Layer.tscn" id="1_7y0na"]
+[ext_resource type="Script" path="res://src/Scripts/NeuralNetwork/Network.gd" id="1_gu80t"]
 
 [node name="NeuralNetwork" type="HBoxContainer"]
-
-[node name="Layer" parent="." instance=ExtResource("1_7y0na")]
-layout_mode = 2
-start_index = 1
-base_children_count = 15
-
-[node name="Layer2" parent="." instance=ExtResource("1_7y0na")]
-layout_mode = 2
-theme_override_constants/margin_top = 100
-start_index = 3
-base_children_count = 2
-
-[node name="Layer3" parent="." instance=ExtResource("1_7y0na")]
-layout_mode = 2
-theme_override_constants/margin_top = 150
-start_index = 5
-base_children_count = 3
-
-[node name="Layer4" parent="." instance=ExtResource("1_7y0na")]
-layout_mode = 2
-theme_override_constants/margin_top = 100
-start_index = 8
-base_children_count = 6
-
-[node name="Layer5" parent="." instance=ExtResource("1_7y0na")]
-layout_mode = 2
-theme_override_constants/margin_top = 165
-start_index = 10
+script = ExtResource("1_gu80t")

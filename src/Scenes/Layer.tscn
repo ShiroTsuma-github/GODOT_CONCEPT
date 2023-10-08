@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://bpatolwa2i45n"]
 
-[ext_resource type="Script" path="res://src/Scripts/Layer/PerceptronNumbering.gd" id="1_3o8bo"]
+[ext_resource type="Script" path="res://src/Scripts/Layer/Layer.gd" id="1_vt1ts"]
 
 [node name="Layer" type="MarginContainer"]
 editor_description = "Layer container with add_perceptron() functionality"
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 50
-script = ExtResource("1_3o8bo")
+script = ExtResource("1_vt1ts")
 
 [node name="VerticalGrid" type="VBoxContainer" parent="."]
 layout_mode = 2
