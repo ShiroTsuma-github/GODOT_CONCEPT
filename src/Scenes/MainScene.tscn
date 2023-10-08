@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bghuicsgtoey6"]
+[gd_scene load_steps=5 format=3 uid="uid://bghuicsgtoey6"]
 
 [ext_resource type="Texture2D" uid="uid://dfmqcodvfuqts" path="res://resources/background.svg" id="1_ok0wd"]
-[ext_resource type="PackedScene" uid="uid://d3pmqpkvvodmj" path="res://src/Scenes/InputOutput.tscn" id="4_d2w30"]
+[ext_resource type="Texture2D" uid="uid://d4m2tf8ytlfk2" path="res://resources/square.svg" id="2_rrkwh"]
 
 [sub_resource type="GDScript" id="GDScript_ubcgp"]
 script/source = "extends Node2D
@@ -16,9 +16,11 @@ var Base_Network = load(\"res://src/Scenes/Network.tscn\")
 @onready var Scroll_Container = get_node(\"MarginContainer/ScrollContainer\")
 # @onready var Network = get_node(\"MarginContainer/ScrollContainer/Network\")
 var Network = null 
+@onready var navbar = get_node(\"Navbar\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	navbar.visible = false
 	var size = get_viewport_rect()
 	print(size)
 	var start_window = Base_Start_Window.instantiate()
@@ -27,6 +29,7 @@ func _ready():
 	pass # Replace with function body.
 
 func forward_signal(param1, param2):
+	navbar.visible = true
 	LayerCount = param1
 	PerceptronsPerLayer = param2
 	print(PerceptronsPerLayer)
@@ -39,10 +42,12 @@ func _process(_delta):
 	pass
 "
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foxk2"]
+
 [node name="MainScene" type="Node2D"]
 script = SubResource("GDScript_ubcgp")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 offset_right = 1288.0
 offset_bottom = 960.0
 mouse_filter = 2
@@ -59,9 +64,159 @@ layout_mode = 2
 horizontal_scroll_mode = 2
 vertical_scroll_mode = 2
 
-[node name="InputOutput" parent="." instance=ExtResource("4_d2w30")]
-visible = false
-offset_left = 1136.0
-offset_top = 576.0
-offset_right = 1236.0
-offset_bottom = 676.0
+[node name="Navbar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 1280.0
+offset_bottom = 200.0
+texture = SubResource("PlaceholderTexture2D_foxk2")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Navbar"]
+offset_right = 1280.0
+offset_bottom = 200.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Navbar/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "FILE"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "NEW"
+
+[node name="Button2" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="Button3" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("2_rrkwh")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "TRAINING"
+
+[node name="Button2" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "LOAD"
+
+[node name="Button3" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="Button" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "EDITOR"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+texture = ExtResource("2_rrkwh")
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+text = "LAYERS"
+
+[node name="SpinBox" type="SpinBox" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer5"]
+layout_mode = 2
+text = "SET"
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer6"]
+layout_mode = 2
+texture = ExtResource("2_rrkwh")
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer7"]
+layout_mode = 2
+text = "PERCEPTRONS"
+
+[node name="SpinBox2" type="SpinBox" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer7"]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer7"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer7"]
+layout_mode = 2
+text = "SET"
+
+[node name="VBoxContainer8" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer8"]
+layout_mode = 2
+texture = ExtResource("2_rrkwh")
+
+[node name="VBoxContainer9" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer9"]
+layout_mode = 2
+text = "TRAINING METHOD"
+
+[node name="OptionButton" type="OptionButton" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer9"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer9"]
+layout_mode = 2
+text = "SET"
+
+[node name="VBoxContainer10" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer10"]
+layout_mode = 2
+texture = ExtResource("2_rrkwh")
+
+[node name="VBoxContainer11" type="VBoxContainer" parent="Navbar/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer11"]
+layout_mode = 2
+text = "SIMULATE"
+
+[node name="Button" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer11"]
+layout_mode = 2
+text = "START"
+
+[node name="Button2" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer11"]
+layout_mode = 2
+text = "STEP (F11)"
+
+[node name="Button3" type="Button" parent="Navbar/MarginContainer2/HBoxContainer/VBoxContainer11"]
+layout_mode = 2
+text = "RUN"
