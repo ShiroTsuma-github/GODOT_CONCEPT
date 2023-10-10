@@ -9,12 +9,10 @@ extends MarginContainer
 		return children_count
 	set(value):
 		children_count = value
-		if Engine.is_editor_hint():
-			var layer = get_child(0)
-			recalc_perceptron_count()
 
-var base_perceptron = load("res://src/Scenes/Perceptron.tscn")
 var added_count: int = 0
+var perceptrons: Array = []
+var center = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +21,7 @@ func _ready():
 	for perceptron in layer.get_children():
 		perceptron.position_index = index
 		index += 1
+	print(perceptrons)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -35,25 +34,13 @@ func create_perceptrons():
 # Function to add new perceptron object to layer
 func add_perceptron():
 	# Instantiate loaded object
-	var new_perceptron = base_perceptron.instantiate()
-	new_perceptron.position_index = start_index + layer.get_child_count()
+	var new_perceptron = Objects.Base_Perceptron.instantiate()
+	new_perceptron.position_index = start_index + perceptrons.size()
+	perceptrons.append(new_perceptron)
 	layer.add_child(new_perceptron)
 
 func remove_perceptron():
-	# var children = layer.get_children()
 	# 	Remove last perceptron from layer
-	layer.get_children()[layer.get_child_count() - 1].queue_free()
-
-func recalc_perceptron_count():
-	if layer == null:
-		return
-	var diff = children_count + added_count - layer.get_child_count()
-	for _i in range(diff):
-		add_perceptron()
-		return
-	
-	if diff < 0:
-		diff = -diff
-		for _i in range(diff):
-			remove_perceptron()
+	# tu not sure czy tak usunie, bo pop_back zwraca, ale czy wchodzi queue_free
+	perceptrons.pop_back().queue_free()
 	

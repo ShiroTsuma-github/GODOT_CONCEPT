@@ -11,13 +11,17 @@ radius = 48.0
 
 [node name="Perceptron" type="TextureRect"]
 editor_description = "Perceptron Graphic Implemented as Control Object"
-offset_left = 376.0
-offset_top = 536.0
-offset_right = 476.0
-offset_bottom = 636.0
+offset_left = 832.0
+offset_top = 216.0
+offset_right = 932.0
+offset_bottom = 316.0
 texture = ExtResource("1_6j76k")
 script = ExtResource("2_m66v4")
 display_weight = true
+position_index = null
+weight_index = null
+weight = null
+center = null
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("3_23g0v")

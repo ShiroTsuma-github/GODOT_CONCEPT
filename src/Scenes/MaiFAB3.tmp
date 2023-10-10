@@ -15,7 +15,6 @@ var PerceptronsPerLayer: Array = []
 # @onready var Network = get_node(\"MarginContainer/ScrollContainer/Network\")
 var Network = null 
 @onready var navbar = get_node(\"Navbar\")
-@onready var inspector = Objects.Base_Inspector.instantiate( )
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,11 +28,10 @@ func _ready():
 
 func forward_signal(param1, param2):
 	navbar.visible = true
-	inspector.get_node('InspectorRight').visible = true
 	LayerCount = param1
 	PerceptronsPerLayer = param2
 	print(PerceptronsPerLayer)
-	Network = Objects.Base_Network.instantiate()
+	Network = Base_Network.instantiate()
 	Network.perceptron_layer_count = LayerCount
 	Network.perc_per_layer = PerceptronsPerLayer
 	Scroll_Container.add_child(Network)
@@ -48,7 +46,6 @@ func _process(_delta):
 script = SubResource("GDScript_ubcgp")
 
 [node name="Background" type="TextureRect" parent="."]
-visible = false
 offset_right = 1288.0
 offset_bottom = 960.0
 mouse_filter = 2
