@@ -17,7 +17,6 @@ offset_right = 476.0
 offset_bottom = 636.0
 texture = ExtResource("1_6j76k")
 script = ExtResource("2_m66v4")
-display_weight = true
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("3_23g0v")

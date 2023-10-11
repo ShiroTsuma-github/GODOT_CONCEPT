@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3pmqpkvvodmj"]
+[gd_scene load_steps=6 format=3 uid="uid://d3pmqpkvvodmj"]
 
 [ext_resource type="Texture2D" uid="uid://d4m2tf8ytlfk2" path="res://resources/square.svg" id="1_buccb"]
+[ext_resource type="Script" path="res://src/Scripts/InputOutput/InputOutput.gd" id="2_g1erv"]
+[ext_resource type="Script" path="res://src/Scripts/InputOutput/DisplayIndex.gd" id="3_i2gcx"]
+[ext_resource type="Script" path="res://src/Scripts/InputOutput/DisplayWeight.gd" id="4_gth1m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j6pn"]
 size = Vector2(100, 100)
@@ -11,6 +14,7 @@ offset_top = 16.0
 offset_right = 132.0
 offset_bottom = 116.0
 texture = ExtResource("1_buccb")
+script = ExtResource("2_g1erv")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -34,6 +38,7 @@ bbcode_enabled = true
 text = "[center][font_size={40}]U[/font_size][font_size={12}]%d[/font_size][/center]"
 fit_content = true
 scroll_active = false
+script = ExtResource("3_i2gcx")
 
 [node name="Control2" type="Control" parent="."]
 anchors_preset = 0
@@ -50,3 +55,4 @@ theme_override_colors/default_color = Color(1, 0, 0, 1)
 bbcode_enabled = true
 text = "[center][font_size={14}]%.3f[/font_size][/center]"
 scroll_active = false
+script = ExtResource("4_gth1m")

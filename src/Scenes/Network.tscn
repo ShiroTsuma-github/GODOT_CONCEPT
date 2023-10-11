@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bpatolwa2i45n" path="res://src/Scenes/Layer.tscn" id="2_71kjj"]
 
 [node name="NeuralNetwork" type="HBoxContainer"]
+theme_override_constants/separation = 60
 script = ExtResource("1_gu80t")
 
 [node name="Layer" parent="." instance=ExtResource("2_71kjj")]

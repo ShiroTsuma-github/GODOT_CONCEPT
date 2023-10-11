@@ -13,23 +13,47 @@ extends MarginContainer
 var added_count: int = 0
 var perceptrons: Array = []
 var center = 0
+var input_count: int = 0
+var output_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var index = start_index
+	if input_count != 0:
+		create_inputs()
+		return
+	elif output_count != 0:
+		create_outputs()
+		return
 	create_perceptrons()
 	for perceptron in layer.get_children():
 		perceptron.position_index = index
 		index += 1
 	print(perceptrons)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func create_perceptrons():
 	for _i in range(children_count):
 		add_perceptron()
+
+func create_inputs():
+	for _i in range(input_count):
+		add_input()
+
+func create_outputs():
+	for _i in range(output_count):
+		add_output()
+
+func add_input():
+	var new_input = Objects.Base_InputOutput.instantiate()
+	# new_input.
+	layer.add_child(new_input)
+	perceptrons.append(new_input)
+	
+func add_output():
+	var new_input = Objects.Base_InputOutput.instantiate()
+	# new_input.
+	layer.add_child(new_input)
+	perceptrons.append(new_input)
 
 # Function to add new perceptron object to layer
 func add_perceptron():

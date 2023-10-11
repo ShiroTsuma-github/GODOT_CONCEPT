@@ -7,15 +7,10 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and isHovering:
-			print("A click!")
-			print(global_position)
+			Objects.create_inspector.emit()
 
 
 func _on_mouse_entered():
