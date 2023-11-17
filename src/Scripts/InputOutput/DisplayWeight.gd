@@ -9,7 +9,3 @@ func _ready():
 	visible = isWeightDisplayed
 	text =  to_format % [weight]
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

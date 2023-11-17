@@ -4,11 +4,12 @@
 [ext_resource type="Script" path="res://src/Scripts/NetworkCreator/CreateLayerSetup.gd" id="2_fcvc8"]
 
 [node name="Window" type="Window"]
+title = "Network Creator"
 initial_position = 2
-size = Vector2i(320, 500)
+size = Vector2i(440, 500)
 unresizable = true
 min_size = Vector2i(100, 100)
-max_size = Vector2i(320, 600)
+max_size = Vector2i(440, 600)
 script = ExtResource("1_2jquf")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -16,12 +17,13 @@ offset_left = 4.0
 offset_top = 4.0
 offset_right = 323.0
 offset_bottom = 496.0
-theme_override_constants/margin_left = 30
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 15
 
 [node name="NewLoad" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/separation = 15
 
@@ -33,61 +35,53 @@ text = "NEW"
 layout_mode = 2
 text = "LOAD"
 
+[node name="OpenExamples" type="Button" parent="MarginContainer/NewLoad"]
+layout_mode = 2
+text = "EXAMPLE"
+
+[node name="ShowAuthor" type="Button" parent="MarginContainer/NewLoad"]
+layout_mode = 2
+text = "AUTHOR"
+
 [node name="Creator" type="VBoxContainer" parent="MarginContainer"]
 visible = false
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="InputSetupContainer" type="HBoxContainer" parent="MarginContainer/Creator"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="MarginContainer/Creator/InputSetupContainer"]
-custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-text = "Inputs:     "
+text = "Inputs:"
 
-[node name="Label2" type="Label" parent="MarginContainer/Creator/InputSetupContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Outputs:  "
-
-[node name="OutputSetupContainer" type="HBoxContainer" parent="MarginContainer/Creator"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 2
-
-[node name="SpinBox2" type="SpinBox" parent="MarginContainer/Creator/OutputSetupContainer"]
+[node name="SpinBox2" type="SpinBox" parent="MarginContainer/Creator/InputSetupContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Number of layers in network43"
 min_value = 1.0
 value = 1.0
+alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/Creator/OutputSetupContainer"]
+[node name="LayerSetupContainer" type="HBoxContainer" parent="MarginContainer/Creator/InputSetupContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Number of layers in network43"
-min_value = 1.0
-value = 1.0
-
-[node name="LayerSetupContainer" type="HBoxContainer" parent="MarginContainer/Creator"]
-layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 alignment = 2
 
-[node name="Label" type="Label" parent="MarginContainer/Creator/LayerSetupContainer"]
+[node name="Label" type="Label" parent="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer"]
 layout_mode = 2
 text = "Layers:     "
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/Creator/LayerSetupContainer"]
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer"]
 layout_mode = 2
 tooltip_text = "Number of layers in network"
 min_value = 1.0
 value = 1.0
+alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/Creator/LayerSetupContainer"]
+[node name="Button" type="Button" parent="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 keep_pressed_outside = true
@@ -103,7 +97,7 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(300, 250)
 layout_mode = 1
 offset_right = 400.0
-offset_bottom = 200.0
+offset_bottom = 250.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
@@ -128,6 +122,7 @@ text = "Accept"
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="pressed" from="MarginContainer/NewLoad/CreateNetwork" to="." method="_on_create_network_pressed"]
 [connection signal="pressed" from="MarginContainer/NewLoad/OpenFileDialog" to="." method="_on_open_file_dialog_pressed"]
-[connection signal="value_changed" from="MarginContainer/Creator/LayerSetupContainer/SpinBox" to="MarginContainer/Creator/LayerSetupContainer/Button" method="_on_spin_box_value_changed"]
-[connection signal="pressed" from="MarginContainer/Creator/LayerSetupContainer/Button" to="MarginContainer/Creator/LayerSetupContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/NewLoad/OpenExamples" to="." method="_on_open_examples_pressed"]
+[connection signal="value_changed" from="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/SpinBox" to="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/Button" method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/Button" to="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/Creator/AcceptAndCloseContaienr/AcceptCloseButton" to="." method="_on_accept_close_button_pressed"]

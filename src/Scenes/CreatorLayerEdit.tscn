@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/Scripts/LayerEdit/CreatorLayerEdit.gd" id="1_68t17"]
 
 [node name="LayerEdit" type="HBoxContainer"]
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 script = ExtResource("1_68t17")
 
 [node name="Label" type="Label" parent="."]
@@ -15,5 +15,17 @@ layout_mode = 2
 tooltip_text = "Number of layers in network43"
 min_value = 1.0
 value = 1.0
+alignment = 1
+
+[node name="PercActivFunc" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text_overrun_behavior = 1
+clip_text = true
+item_count = 1
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "Step Unipolar"
+popup/item_0/id = 0
 
 [connection signal="value_changed" from="SpinBox" to="." method="_on_spin_box_value_changed"]

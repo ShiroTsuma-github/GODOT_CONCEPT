@@ -2,7 +2,9 @@ extends HBoxContainer
 var base_perceptron_layer = load("res://src/Scenes/Layer.tscn")
 var perceptron_layer_count: int = 0
 var perc_per_layer: Array = []
-var perceptron_count: int= 1 
+var perceptron_count: int = 1 
+var input_count: int = 1
+var output_count: int = 1
 @onready var MainScene = get_tree().root.get_child(0)
 var layers: Array = []
 var start_left: int = 110
@@ -19,6 +21,7 @@ func setup():
 	for i in range(perceptron_layer_count):
 		add_layer(perc_per_layer[i])
 	queue_redraw()
+	output_count = perc_per_layer[-1]
 	add_output_layer()
 
 func _draw():
@@ -27,13 +30,13 @@ func _draw():
 
 func add_input_layer():
 	var layer = base_perceptron_layer.instantiate()
-	layer.input_count = 2
+	layer.input_count = input_count
 	add_child(layer)
 	layers.append(layer)
 
 func add_output_layer():
 	var layer = base_perceptron_layer.instantiate()
-	layer.output_count = 2
+	layer.output_count = output_count
 	add_child(layer)
 	layers.append(layer)
 
@@ -53,10 +56,15 @@ func remove_layer():
 
 func draw_connections():
 	var ConnectionTable = []
-	for layer_i in range(layers.size() - 1):
+	for layer_i in range(layers.size() - 2):
 		for perceptron_i in range(layers[layer_i].perceptrons.size()):
 			for sibling_i in range(layers[layer_i + 1].perceptrons.size()):
 				var pos_p = Vector2(start_left + diff_x * layer_i, start_top + diff_y * perceptron_i)
 				var pos_s = Vector2(start_left + diff_x * (layer_i + 1), start_top + diff_y * sibling_i)
 				draw_line(pos_p, pos_s, Color(194/255.0, 195/255.0, 197/255.0, 0.3), 2)
+	var last_layer = layers.size() - 1
+	for perceptron_i in range(layers[-1].perceptrons.size()):
+		var pos_p = Vector2(start_left + diff_x * (last_layer - 1), start_top + diff_y * perceptron_i)
+		var pos_s = Vector2(start_left + diff_x * last_layer, start_top + diff_y * perceptron_i)
+		draw_line(pos_p, pos_s, Color(194/255.0, 195/255.0, 197/255.0, 0.3), 2)
 	

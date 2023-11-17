@@ -10,6 +10,7 @@ signal create_network
 
 var LayerCount: int = 0
 var PerceptronsPerLayer: Array = []
+var InputCount: int = 1
 
 @onready var NetworkContainer = get_node(\"MarginContainer/ScrollContainer/MarginContainer\")
 # @onready var Network = get_node(\"MarginContainer/ScrollContainer/Network\")
@@ -30,13 +31,15 @@ func _ready():
 	add_child(start_window)
 
 
-func forward_signal(param1, param2):
+func forward_signal(param1, param2, param3):
 	navbar.visible = true
 	inspector.get_node('InspectorRight').visible = true
 	LayerCount = param1
 	PerceptronsPerLayer = param2
+	InputCount = param3
 	print(PerceptronsPerLayer)
 	Network = Objects.Base_Network.instantiate()
+	Network.input_count = InputCount
 	Network.perceptron_layer_count = LayerCount
 	Network.perc_per_layer = PerceptronsPerLayer
 	NetworkContainer.add_child(Network)
@@ -54,7 +57,6 @@ func create_inspector():
 script = SubResource("GDScript_ubcgp")
 
 [node name="Background" type="TextureRect" parent="."]
-visible = false
 offset_right = 1288.0
 offset_bottom = 960.0
 mouse_filter = 2
