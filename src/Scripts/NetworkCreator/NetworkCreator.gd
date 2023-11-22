@@ -13,8 +13,14 @@ var percpetrons_per_layer: Array = []
 signal setup_network(layers, perceptrons, inputs)
 
 func _ready():
-	get_node("MarginContainer/Creator").visible = false
 	get_node("MarginContainer/NewLoad").visible = true
+	get_node("MarginContainer/Creator").visible = false
+	if Objects.Base_Start_Window_NEW == true:
+		_on_create_network_pressed()
+		Objects.Base_Start_Window_NEW = false
+	if Objects.Base_Start_Window_LOAD == true:
+		_on_open_file_dialog_pressed()
+		Objects.Base_Start_Window_LOAD = false
 	button.create_layer_setup.connect(setup_layer_config)
 	add_layer_config(1)
 
@@ -59,6 +65,9 @@ func _on_create_network_pressed():
 
 func _on_close_requested():
 	hide()
+	if Objects.Base_Start_Window_BLOCK_CLOSE == true:
+		Objects.Base_Start_Window_BLOCK_CLOSE = false
+		return
 	get_tree().quit()
 
 
@@ -83,3 +92,7 @@ func _on_open_examples_pressed():
 	print("Test path", test.get_current_path())
 	add_child(test)
 
+
+
+func _on_show_author_pressed():
+	pass # Replace with function body.

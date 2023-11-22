@@ -123,6 +123,7 @@ text = "Accept"
 [connection signal="pressed" from="MarginContainer/NewLoad/CreateNetwork" to="." method="_on_create_network_pressed"]
 [connection signal="pressed" from="MarginContainer/NewLoad/OpenFileDialog" to="." method="_on_open_file_dialog_pressed"]
 [connection signal="pressed" from="MarginContainer/NewLoad/OpenExamples" to="." method="_on_open_examples_pressed"]
+[connection signal="pressed" from="MarginContainer/NewLoad/ShowAuthor" to="." method="_on_show_author_pressed"]
 [connection signal="value_changed" from="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/SpinBox" to="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/Button" method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/Button" to="MarginContainer/Creator/InputSetupContainer/LayerSetupContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/Creator/AcceptAndCloseContaienr/AcceptCloseButton" to="." method="_on_accept_close_button_pressed"]
