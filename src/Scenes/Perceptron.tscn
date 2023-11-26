@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://3lhrb41ht12"]
+[gd_scene load_steps=6 format=3 uid="uid://3lhrb41ht12"]
 
 [ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://resources/circle.svg" id="1_6j76k"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/Perceptron.gd" id="2_m66v4"]
-[ext_resource type="Script" path="res://src/Scripts/Perceptron/DetectPress.gd" id="3_23g0v"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronPosition.gd" id="4_ea5sm"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronWeight.gd" id="5_pwk1r"]
 
@@ -19,7 +18,6 @@ texture = ExtResource("1_6j76k")
 script = ExtResource("2_m66v4")
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("3_23g0v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(50, 50)
@@ -89,5 +87,5 @@ text = "[center][font_size={14}]%.3f[/font_size][/center]"
 scroll_active = false
 script = ExtResource("5_pwk1r")
 
-[connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

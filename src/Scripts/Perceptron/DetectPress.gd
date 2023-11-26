@@ -10,7 +10,8 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and isHovering:
-			Objects.create_inspector.emit()
+			# Objects.create_inspector.emit()
+			Objects.perceptron_pressed.emit()
 
 
 func _on_mouse_entered():

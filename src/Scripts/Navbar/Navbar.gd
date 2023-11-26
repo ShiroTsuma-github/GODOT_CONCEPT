@@ -25,3 +25,15 @@ func _on_guzik_load_pressed():
 	var test = filedialog.instantiate()
 	test.add_filter("*.nn")
 	add_child(test)
+
+
+func _on_button_2_pressed():
+	var filedialog = load("res://src/Scenes/FileDialog.tscn")
+	var test = filedialog.instantiate()
+	test.set_current_path(ProjectSettings.globalize_path("res://Data/"))
+	test.add_filter("*.csv")
+	add_child(test)
+
+
+func _on_button_pressed():
+	Objects.simulate_running.emit()

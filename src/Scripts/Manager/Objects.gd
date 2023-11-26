@@ -1,6 +1,8 @@
 extends Node
 
 signal create_inspector
+signal perceptron_pressed(perceptron)
+signal simulate_running
 
 var Base_Start_Window = load("res://src/Scenes/NetworkCreator.tscn")
 var Base_Start_Window_NEW = false

@@ -22,6 +22,7 @@ extends TextureRect
 		weight_history.append(value)
 
 var weight_history: Array = [weight]
+var isHovering: bool = false
 
 @onready var center = get_node('Area2D').global_position
 
@@ -46,4 +47,20 @@ func set_position_index(value):
 func set_weight(value):
 	weight = value
 
+
+
+
+func _on_area_2d_mouse_entered():
+	isHovering = true
+
+
+func _on_area_2d_mouse_exited():
+	isHovering = false
+	
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and isHovering:
+			# Objects.create_inspector.emit()
+			Objects.perceptron_pressed.emit(self)
 

@@ -23,26 +23,26 @@ theme_override_constants/margin_top = 10
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+[node name="FileOptions" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/FileOptions"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 26
 text = "FILE"
 horizontal_alignment = 1
 
-[node name="GuzikNowy" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="GuzikNowy" type="Button" parent="MarginContainer2/HBoxContainer/FileOptions"]
 layout_mode = 2
 text = "NEW"
 
-[node name="GuzikLoad" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="GuzikLoad" type="Button" parent="MarginContainer2/HBoxContainer/FileOptions"]
 layout_mode = 2
 text = "LOAD"
 
-[node name="Button3" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="Button3" type="Button" parent="MarginContainer2/HBoxContainer/FileOptions"]
 layout_mode = 2
 text = "SAVE"
 
@@ -53,22 +53,23 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("1_bk7gd")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+[node name="DataOptions" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/DataOptions"]
 layout_mode = 2
 text = "TRAINING"
 
-[node name="Button2" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer2"]
+[node name="Button2" type="Button" parent="MarginContainer2/HBoxContainer/DataOptions"]
 layout_mode = 2
 text = "LOAD"
 
-[node name="Button3" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer2"]
+[node name="Button3" type="Button" parent="MarginContainer2/HBoxContainer/DataOptions"]
 layout_mode = 2
 text = "SAVE"
 
-[node name="Button" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer2"]
+[node name="Button" type="Button" parent="MarginContainer2/HBoxContainer/DataOptions"]
+visible = false
 layout_mode = 2
 text = "EDITOR"
 
@@ -80,6 +81,7 @@ layout_mode = 2
 texture = ExtResource("1_bk7gd")
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/VBoxContainer5"]
@@ -94,6 +96,7 @@ layout_mode = 2
 text = "SET"
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer/VBoxContainer6"]
@@ -101,6 +104,7 @@ layout_mode = 2
 texture = ExtResource("1_bk7gd")
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
@@ -118,6 +122,7 @@ layout_mode = 2
 text = "SET"
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer/VBoxContainer8"]
@@ -164,5 +169,7 @@ text = "STEP (F11)"
 layout_mode = 2
 text = "RUN"
 
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/GuzikNowy" to="." method="_on_guzik_nowy_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/GuzikLoad" to="." method="_on_guzik_load_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/FileOptions/GuzikNowy" to="." method="_on_guzik_nowy_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/FileOptions/GuzikLoad" to="." method="_on_guzik_load_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/DataOptions/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer11/Button" to="." method="_on_button_pressed"]
