@@ -11,6 +11,7 @@ var start_left: int = 110
 var start_top = 100
 var diff_x = 160
 var diff_y = 130
+var offset_x = 40
 var selected_x = null
 var selected_y = null
 
@@ -101,8 +102,8 @@ func show_connections(perceptron):
 func draw_specific():
 	draw_connections()
 	for sibling_i in range(layers[selected_x - 1].perceptrons.size()):
-		var pos_p = Vector2(start_left + diff_x * (selected_x - 1), start_top + diff_y * sibling_i)
-		var pos_s = Vector2(start_left + diff_x * selected_x, start_top + diff_y * selected_y)
+		var pos_p = Vector2(start_left + offset_x + diff_x * (selected_x - 1), start_top + diff_y * sibling_i)
+		var pos_s = Vector2(start_left - offset_x + diff_x * selected_x, start_top + diff_y * selected_y)
 		draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
 
 
@@ -112,8 +113,8 @@ func draw_connections():
 	for layer_i in range(layers.size() - 2):
 		for perceptron_i in range(layers[layer_i].perceptrons.size()):
 			for sibling_i in range(layers[layer_i + 1].perceptrons.size()):
-				var pos_p = Vector2(start_left + diff_x * layer_i, start_top + diff_y * perceptron_i)
-				var pos_s = Vector2(start_left + diff_x * (layer_i + 1), start_top + diff_y * sibling_i)
+				var pos_p = Vector2(start_left + offset_x + diff_x * layer_i, start_top + diff_y * perceptron_i)
+				var pos_s = Vector2(start_left -offset_x + diff_x * (layer_i + 1), start_top + diff_y * sibling_i)
 				draw_line(pos_p, pos_s, Color(194/255.0, 195/255.0, 197/255.0, 0.3), 2)
 	var last_layer = layers.size() - 1
 	for perceptron_i in range(layers[-1].perceptrons.size()):
