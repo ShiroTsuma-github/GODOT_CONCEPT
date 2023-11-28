@@ -29,7 +29,6 @@ func _ready():
 	for perceptron in layer.get_children():
 		perceptron.position_index = index
 		index += 1
-	print(perceptrons)
 
 func create_perceptrons():
 	for _i in range(children_count):

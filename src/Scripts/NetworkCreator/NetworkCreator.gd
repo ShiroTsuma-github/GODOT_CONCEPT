@@ -87,9 +87,9 @@ func _on_accept_close_button_pressed():
 func _on_open_examples_pressed():
 	var test = filedialog.instantiate()
 	test.add_filter("*.nn")
-	test.set_current_path(ProjectSettings.globalize_path("res://Examples/"))
-	print(ProjectSettings.globalize_path("res://Examples/"))
-	print("Test path", test.get_current_path())
+	
+	
+
 	add_child(test)
 
 

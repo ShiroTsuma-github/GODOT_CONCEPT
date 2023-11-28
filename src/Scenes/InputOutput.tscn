@@ -15,6 +15,7 @@ offset_right = 132.0
 offset_bottom = 116.0
 texture = ExtResource("1_buccb")
 script = ExtResource("2_g1erv")
+display = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

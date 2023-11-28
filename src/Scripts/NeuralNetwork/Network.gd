@@ -14,6 +14,7 @@ var diff_y = 130
 var offset_x = 40
 var selected_x = null
 var selected_y = null
+var forward = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +31,6 @@ func setup():
 	Objects.simulate_running.connect(simulate)
 
 func _draw():
-	print("in draw", selected_x, selected_y)
 	if selected_x != null and selected_y != null:
 		draw_specific()
 	else:
@@ -101,14 +101,24 @@ func show_connections(perceptron):
 
 func draw_specific():
 	draw_connections()
-	for sibling_i in range(layers[selected_x - 1].perceptrons.size()):
-		var pos_p = Vector2(start_left + offset_x + diff_x * (selected_x - 1), start_top + diff_y * sibling_i)
-		var pos_s = Vector2(start_left - offset_x + diff_x * selected_x, start_top + diff_y * selected_y)
-		draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
+	if forward:
+		for sibling_i in range(layers[selected_x - 1].perceptrons.size()):
+			var pos_p = Vector2(start_left + offset_x + diff_x * (selected_x - 1), start_top + diff_y * sibling_i)
+			var pos_s = Vector2(start_left - offset_x + diff_x * selected_x, start_top + diff_y * selected_y)
+			draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
+	else:
+		if selected_x == layers.size() - 2:
+			var pos_p = Vector2(start_left + diff_x * selected_x, start_top + diff_y * selected_y)
+			var pos_s = Vector2(start_left + diff_x * (selected_x + 1), start_top + diff_y * selected_y)
+			draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
+			return
+		for sibling_i in range(layers[selected_x + 1].perceptrons.size()):
+			var pos_p = Vector2(start_left + offset_x + diff_x * selected_x, start_top + diff_y * selected_y)
+			var pos_s = Vector2(start_left - offset_x + diff_x *(selected_x + 1), start_top + diff_y * sibling_i)
+			draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
 
 
 func draw_connections():
-	print('drawing')
 	var ConnectionTable = []
 	for layer_i in range(layers.size() - 2):
 		for perceptron_i in range(layers[layer_i].perceptrons.size()):
