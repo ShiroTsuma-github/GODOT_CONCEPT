@@ -65,7 +65,7 @@ func _input(event):
 func init(
 	i_activation_function, i_learning_rate, i_momentum,
 	i_step_bipolar_threshold, i_identity_a,
-	i_parametric_a, i_perc_x, i_perc_y):
+	i_parametric_a, i_pos_x, i_pos_y):
 
 		activation_function = i_activation_function
 		learning_rate = i_learning_rate
@@ -73,12 +73,12 @@ func init(
 		step_bipolar_threshold = i_step_bipolar_threshold
 		identity_a = i_identity_a
 		parametric_a = i_parametric_a
-		perc_x = i_perc_x
-		perc_y = i_perc_y
+		pos_x = i_pos_x
+		pos_y = i_pos_y
 
-func set_pos(i_perc_x, i_perc_y):
-	perc_x = i_perc_x
-	perc_y = i_perc_y
+func set_pos(i_pos_x, i_pos_y):
+	pos_x = i_pos_x
+	pos_y = i_pos_y
 
 
 var activation_function: int
@@ -88,8 +88,8 @@ var momentum = 0
 var step_bipolar_threshold = 0
 var identity_a = 0
 var parametric_a = 0.1
-var perc_x: int
-var perc_y: int
+var pos_x: int
+var pos_y: int
 var weights = [inner_weight] :
 	get:
 		return weights
@@ -115,6 +115,7 @@ var inner_neighbour = Objects.Base_InputOutput.instantiate()
 var velocity_weight = []
 var left_neighbours = []
 var right_neighbours = []
+var type = 'perceptron'
 
 
 func modify_weights(expected_output, training_set):
@@ -154,13 +155,13 @@ func randomize_weights_around_10():
 
 func calc_error(expected_output=null):
 	if expected_output == null:
-		# TODO: Verify perc_y is correct and set
-		error = (expected_output[perc_y] - output) * get_output_der()
+		# TODO: Verify pos_y is correct and set
+		error = (expected_output[pos_y] - output) * get_output_der()
 	else:
 		#.map(func(n): return n * 2)
 		# var doubled = range(5).map(func(n): return n * 2)
 		# TODO: Verify if it works
-		error = Objects.sum(right_neighbours.map(func(n): return (n.error * n.weights[perc_y]))) * get_output_der()
+		error = Objects.sum(right_neighbours.map(func(n): return (n.error * n.weights[pos_y]))) * get_output_der()
 	return error
 
 func calc_sum():

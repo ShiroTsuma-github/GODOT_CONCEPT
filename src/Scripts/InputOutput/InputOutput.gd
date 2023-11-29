@@ -4,6 +4,7 @@ extends TextureRect
 @export var display: bool = false
 @onready var text_output = get_node("Control2/RichTextLabel")
 signal update_output
+var type = 'InputOutput'
 
 # NEURAL NETWORK IMPLEMENTATION
 
@@ -17,7 +18,8 @@ var output: float = 0 :
 		update_output.emit()
 		if len(previous_outputs) > 50:
 			previous_outputs.pop_front()
-
+var pos_x: int
+var pos_y: int
 
 
 # Called when the node enters the scene tree for the first time.

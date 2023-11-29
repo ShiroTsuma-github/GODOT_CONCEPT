@@ -30,13 +30,13 @@ enum LayerTypes{
 	PERC
 }
 
-static func mul_list(l, i):
+func mul_list(l, i):
 	var res = []
 	for index in range(i):
 		res.append(l)
 	return res
 		
-static func sum(array):
+func sum(array):
 	var _sum = 0.0
 	for element in array:
 		_sum += element
