@@ -29,3 +29,4 @@ popup/item_0/text = "Step Unipolar"
 popup/item_0/id = 0
 
 [connection signal="value_changed" from="SpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="item_selected" from="PercActivFunc" to="." method="_on_perc_activ_func_item_selected"]

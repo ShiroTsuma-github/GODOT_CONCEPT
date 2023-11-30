@@ -7,20 +7,23 @@ var ginput_count: int = 1
 var goutput_count: int = 1
 @onready var MainScene = get_tree().root.get_child(0)
 var glayers: Array = []
-var start_left: int = 110
+var start_left: int = 60
 var start_top = 100
 var diff_x = 160
 var diff_y = 130
 var offset_x = 40
 var selected_x = null
 var selected_y = null
-var forward_dir = true
+var forward_dir = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setup()
+	# csetup()
+	#setup(13,4)
+	#set_perceptrons_per_layer([8,2,3,5])
+	pass
 
-func setup():
+func csetup():
 	add_input_layer()
 	for i in range(perceptron_layer_count):
 		add_layer(perc_per_layer[i])
@@ -76,61 +79,42 @@ func simulate():
 			selected_y = child_i
 			queue_redraw()
 
-func show_connections(perceptron):
-	var item_x = 0
-	var item_y = 0
-	var found = false
-	var x = -1
-	var y = -1
-	for line in glayers:
-		if found:
-			break
-		x += 1
-		y = -1
-		for child in line.get_children()[0].get_children():
-			if found:
-				break
-			y += 1
-			if perceptron == child:
-				item_x = x
-				item_y = y
-				found = true
-	selected_x = x
-	selected_y = y
+func show_connections(pos_x, pos_y):
+	selected_x = pos_x
+	selected_y = pos_y
 	queue_redraw()
 
 func draw_specific():
 	draw_connections()
 	if forward_dir:
-		for sibling_i in range(glayers[selected_x - 1].perceptrons.size()):
+		for sibling_i in range(layers[selected_x - 1].child_count()):
 			var pos_p = Vector2(start_left + offset_x + diff_x * (selected_x - 1), start_top + diff_y * sibling_i)
 			var pos_s = Vector2(start_left - offset_x + diff_x * selected_x, start_top + diff_y * selected_y)
 			draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
 	else:
-		if selected_x == glayers.size() - 2:
+		if selected_x == layers.size() - 2:
 			var pos_p = Vector2(start_left + diff_x * selected_x, start_top + diff_y * selected_y)
 			var pos_s = Vector2(start_left + diff_x * (selected_x + 1), start_top + diff_y * selected_y)
 			draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
 			return
-		for sibling_i in range(glayers[selected_x + 1].perceptrons.size()):
+		for sibling_i in range(layers[selected_x + 1].child_count()):
 			var pos_p = Vector2(start_left + offset_x + diff_x * selected_x, start_top + diff_y * selected_y)
 			var pos_s = Vector2(start_left - offset_x + diff_x *(selected_x + 1), start_top + diff_y * sibling_i)
 			draw_line(pos_p, pos_s, Color(255.0/255.0, 0/255.0, 0/255.0, 1), 3)
 
 
 func draw_connections():
-	var ConnectionTable = []
-	for layer_i in range(glayers.size() - 2):
-		for perceptron_i in range(glayers[layer_i].perceptrons.size()):
-			for sibling_i in range(glayers[layer_i + 1].perceptrons.size()):
+	for layer_i in layers.size() - 2:
+		for perceptron_i in layers[layer_i].child_count():
+			for sibling_i in layers[layer_i].right_layer.child_count():
 				var pos_p = Vector2(start_left + offset_x + diff_x * layer_i, start_top + diff_y * perceptron_i)
 				var pos_s = Vector2(start_left -offset_x + diff_x * (layer_i + 1), start_top + diff_y * sibling_i)
 				draw_line(pos_p, pos_s, Color(194/255.0, 195/255.0, 197/255.0, 0.3), 2)
-	var last_layer = glayers.size() - 1
-	for perceptron_i in range(glayers[-1].perceptrons.size()):
-		var pos_p = Vector2(start_left + diff_x * (last_layer - 1), start_top + diff_y * perceptron_i)
-		var pos_s = Vector2(start_left + diff_x * last_layer, start_top + diff_y * perceptron_i)
+	for perceptron_i in output_layer.child_count():
+		var pos_p = Vector2(start_left + diff_x * (output_layer.pos_x - 1), start_top + diff_y * perceptron_i)
+		var pos_s = Vector2(start_left + diff_x * output_layer.pos_x, start_top + diff_y * perceptron_i)
 		draw_line(pos_p, pos_s, Color(194/255.0, 195/255.0, 197/255.0, 0.3), 2)
+
 	
 
 
@@ -232,3 +216,61 @@ func update_weights():
 
 func get_perc_layers():
 	return perc_layers
+
+
+func set_perceptrons_per_layer(i_perceptrons_per_layer):
+	for i in perc_layers.size():
+		for j in i_perceptrons_per_layer[i]:
+			var obj = Objects.Base_Perceptron.instantiate()
+			obj.init(Objects.ActivationFunctions.STEP_UNIPOLAR, learning_rate, momentum)
+			perc_layers[i].cadd_child(obj)
+	for i in perc_layers[-1].children.size():
+		var obj = Objects.Base_InputOutput.instantiate()
+		output_layer.cadd_child(obj)
+	queue_redraw()
+	Objects.perceptron_pressed.connect(show_connections)
+
+func prepare_for_backpropagation():
+	for i in perc_layers.size():
+		perc_layers[i].prepare_for_backpropagation()
+
+func set_layer_activation_function(i_id, i_activation_function):
+	perc_layers[i_id].set_children_functions(i_activation_function)
+
+func set_activation_functions(i_activation_functions):
+	for i in perc_layers.size():
+		perc_layers[i].set_children_functions(i_activation_functions[i])
+
+func setup(i_inputs = 1, i_perc_layers = 1):
+	var moving_pos = 0
+	var layer = Objects.Base_Layer.instantiate()
+	layer.pos_x = moving_pos
+	moving_pos += 1
+	layers.append(layer)
+	add_child(layer)
+	for i in i_perc_layers:
+		layer = Objects.Base_Layer.instantiate()
+		layer.pos_x = moving_pos
+		moving_pos += 1
+		layers.append(layer)
+		perc_layers.append(layer)
+		add_child(layer)
+	
+	layer = Objects.Base_Layer.instantiate()
+	layer.pos_x = moving_pos
+	moving_pos += 1
+	layers.append(layer)
+	add_child(layer)
+	input_layer = layers[0]
+	output_layer = layers[-1]
+	for i in i_inputs:
+		var input = Objects.Base_InputOutput.instantiate()
+		layers[0].cadd_child(input)
+	for i in layers.size():
+		if i == 0:
+			layers[i].right_layer = layers[i + 1]
+		if i == layers.size() - 1:
+			layers[i].left_layer = layers[i - 1]
+		else:
+			layers[i].left_layer = layers[i - 1]
+			layers[i].right_layer = layers[i + 1]

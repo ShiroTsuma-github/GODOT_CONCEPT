@@ -9,8 +9,8 @@ var filedialog = load("res://src/Scenes/FileDialog.tscn")
 var layer_count: int = 1
 var input_count_value: int = 1
 var percpetrons_per_layer: Array = []
-
-signal setup_network(layers, perceptrons, inputs)
+var layer_functions = []
+signal setup_network(layers, perceptrons, inputs, functions)
 
 func _ready():
 	get_node("MarginContainer/NewLoad").visible = true
@@ -76,11 +76,12 @@ func get_network_config():
 	input_count_value = input_count.value
 	for item in layer_edit_container.get_children():
 		percpetrons_per_layer.append(item.perceptron_count)
+		layer_functions.append(item.layer_function)
 
 
 func _on_accept_close_button_pressed():
 	get_network_config()
-	setup_network.emit(layer_count, percpetrons_per_layer, input_count_value)
+	setup_network.emit(layer_count, percpetrons_per_layer, input_count_value, layer_functions)
 	hide()
 
 

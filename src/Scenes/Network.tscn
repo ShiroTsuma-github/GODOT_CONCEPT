@@ -1,11 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://0726l0lom0wl"]
+[gd_scene load_steps=2 format=3 uid="uid://0726l0lom0wl"]
 
 [ext_resource type="Script" path="res://src/Scripts/NeuralNetwork/Network.gd" id="1_gu80t"]
-[ext_resource type="PackedScene" uid="uid://bpatolwa2i45n" path="res://src/Scenes/Layer.tscn" id="2_71kjj"]
 
 [node name="NeuralNetwork" type="HBoxContainer"]
 theme_override_constants/separation = 60
 script = ExtResource("1_gu80t")
-
-[node name="Layer" parent="." instance=ExtResource("2_71kjj")]
-layout_mode = 2

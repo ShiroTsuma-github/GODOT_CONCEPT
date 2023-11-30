@@ -18,17 +18,18 @@ var output_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var index = start_index
-	if input_count != 0:
-		create_inputs()
-		return
-	elif output_count != 0:
-		create_outputs()
-		return
-	create_perceptrons()
-	for perceptron in layer.get_children():
-		perceptron.position_index = index
-		index += 1
+	# var index = start_index
+	#if input_count != 0:
+	#	create_inputs()
+	#	return
+	#elif output_count != 0:
+	#	create_outputs()
+	#	return
+	#create_perceptrons()
+	#for perceptron in layer.get_children():
+	#	perceptron.position_index = index
+	#	index += 1
+	pass
 
 func create_perceptrons():
 	for _i in range(children_count):
@@ -112,11 +113,19 @@ func add_children(i_children):
 	children = i_children
 	for i in children.size():
 			children[i].pos_x = pos_x
-			children[i].pos_y = child_count()
+			children[i].pos_y = i
 			if i_children[i].type == 'perceptron':
 				children_functions.append(children[i].activation_function)
 				if left_layer != null:
 					children[i].set_neighbours(left_layer.children)
+
+func cadd_child(i_child):
+	children.append(i_child)
+	if i_child.type == 'perceptron':
+		children_functions.append(i_child.activation_function)
+		children[-1].set_neighbours(left_layer.children)
+		children[-1].set_pos(pos_x, children.size() - 1)
+	layer.add_child(i_child)
 
 func get_sums():
 	var res = []

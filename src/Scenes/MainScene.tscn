@@ -11,6 +11,7 @@ signal create_network
 var LayerCount: int = 0
 var PerceptronsPerLayer: Array = []
 var InputCount: int = 1
+var functions = []
 
 @onready var NetworkContainer = get_node(\"MarginContainer/ScrollContainer/MarginContainer\")
 # @onready var Network = get_node(\"MarginContainer/ScrollContainer/Network\")
@@ -31,21 +32,21 @@ func _ready():
 	add_child(start_window)
 
 
-func forward_signal(param1, param2, param3):
+func forward_signal(param1, param2, param3, param4):
+	for n in NetworkContainer.get_children():
+		NetworkContainer.remove_child(n)
+		n.queue_free()
 	navbar.visible = true
 	inspector.get_node('InspectorRight').visible = true
 	LayerCount = param1
 	PerceptronsPerLayer = param2
 	InputCount = param3
-	print(PerceptronsPerLayer)
+	functions = param4
 	Network = Objects.Base_Network.instantiate()
-	Network.input_count = InputCount
-	Network.perceptron_layer_count = LayerCount
-	Network.perc_per_layer = PerceptronsPerLayer
-	for n in NetworkContainer.get_children():
-		NetworkContainer.remove_child(n)
-		n.queue_free()
 	NetworkContainer.add_child(Network)
+	Network.setup(InputCount, LayerCount)
+	Network.set_perceptrons_per_layer(PerceptronsPerLayer)
+	Network.set_activation_functions(functions)
 
 func create_inspector():
 	inspector.visible = true

@@ -31,8 +31,6 @@ signal update_visual_data
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	name = "Perceptron"
-	inner_neighbour.init(1)
-	set_neighbours([1,3,2])
 	
 
 
@@ -58,14 +56,14 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and isHovering:
 			# Objects.create_inspector.emit()
-			Objects.perceptron_pressed.emit(self)
+			Objects.perceptron_pressed.emit(pos_x, pos_y)
 
 
 # NEURAL NETWORK IMPLEMENTATION
 func init(
-	i_activation_function, i_learning_rate, i_momentum,
-	i_step_bipolar_threshold, i_identity_a,
-	i_parametric_a, i_pos_x, i_pos_y):
+	i_activation_function, i_learning_rate, i_momentum, i_pos_x=-1, i_pos_y=null,
+	i_step_bipolar_threshold = 0, i_identity_a = 1,
+	i_parametric_a = 0.1):
 
 		activation_function = i_activation_function
 		learning_rate = i_learning_rate
@@ -88,8 +86,8 @@ var momentum = 0
 var step_bipolar_threshold = 0
 var identity_a = 0
 var parametric_a = 0.1
-var pos_x: int
-var pos_y: int
+var pos_x = null
+var pos_y = null
 var weights = [inner_weight] :
 	get:
 		return weights
