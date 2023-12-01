@@ -1,6 +1,5 @@
 extends TextureRect
 
-@export var display_weight: bool = false
 @export var position_index: int = 0 :
 	get:
 		return position_index
@@ -25,14 +24,20 @@ var weight_history: Array = [weight]
 var isHovering: bool = false
 
 @onready var center = get_node('Area2D').global_position
+@onready var output_text = get_node("Control3/RichTextLabel")
+@onready var output_node = get_node("Control3")
+@onready var weight_node = get_node("Control2")
+var isRunning = false
+@export var display_weight: bool = isRunning
 
 signal update_visual_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	output_node.visible = isRunning
+	weight_node.visible = isRunning
 	name = "Perceptron"
 	
-
 
 
 func set_weight_index(value):
@@ -95,6 +100,7 @@ var weights = [inner_weight] :
 		previous_weights.append(weights)
 		inner_weight = value[0]
 		weights = value
+		update_visual_data.emit()
 		if len(previous_weights) > 50:
 			previous_weights.pop_front()
 var previous_weights = []
@@ -103,6 +109,7 @@ var output = 0:
 		return output
 	set(value):
 		previous_outputs.append(output)
+		output_text.text = "[center][font_size={14}]%.3f[/font_size][/center]" % [value]
 		output = value
 		if len(previous_outputs) > 50:
 			previous_outputs.pop_front()
@@ -149,6 +156,12 @@ func randomize_weights_around_10():
 	var rng = RandomNumberGenerator.new()
 	for i in weights.size():
 		new.append(rng.randf_range(-10, 10))
+	weights = new
+
+func zero_weights():
+	var new = []
+	for i in weights.size():
+		new.append(0)
 	weights = new
 
 func calc_error(expected_output=null):
@@ -293,3 +306,9 @@ func get_output_der():
 		return calc_relu_parametric_der()
 	else:
 		assert(1 == 2, "ERROR: COULD NOT MATCH ACTIVATION FUNCTION")
+
+func is_running(run):
+	display_weight = run
+	isRunning = run
+	output_node.visible = run
+	weight_node.visible = run

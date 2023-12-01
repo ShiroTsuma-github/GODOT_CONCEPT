@@ -6,6 +6,5 @@ func _ready():
 	var isOutputDisplayed = get_node('../..').display
 	var output = get_node('../..').output
 	var to_format = "[center][font_size={14}]%.3f[/font_size][/center]"
-	visible = isOutputDisplayed
 	text =  to_format % [output]
 

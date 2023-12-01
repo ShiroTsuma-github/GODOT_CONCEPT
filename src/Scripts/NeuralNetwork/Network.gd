@@ -14,10 +14,17 @@ var diff_y = 130
 var offset_x = 40
 var selected_x = null
 var selected_y = null
-var forward_dir = false
+var forward_dir = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Objects.Network = self
+	Objects.VALID_CSV_DATA = false
+	Objects.run.connect(is_running)
+	Objects.csv_selected.connect(load_csv)
+	Objects.simulate_running.connect(simulate)
+	Objects.weights_randomized.connect(randomize_weights)
+	Objects.weights_zeroed.connect(zero_weights)
 	# csetup()
 	#setup(13,4)
 	#set_perceptrons_per_layer([8,2,3,5])
@@ -30,8 +37,8 @@ func csetup():
 	queue_redraw()
 	goutput_count = perc_per_layer[-1]
 	add_output_layer()
-	Objects.perceptron_pressed.connect(show_connections)
-	Objects.simulate_running.connect(simulate)
+	#Objects.perceptron_pressed.connect(show_connections)
+	#Objects.simulate_running.connect(simulate)
 
 func _draw():
 	if selected_x != null and selected_y != null:
@@ -68,16 +75,7 @@ func remove_layer():
 
 # do a thingie, where it will go through every valid perceptron add show connections, like it's running
 func simulate():
-	var max_x = glayers.size() - 1
-	var current_x = 0
-	var current_max_y = glayers[current_x]
-	for layer_i in range(glayers.size()):
-		for child_i in range(glayers[layer_i].perceptrons.size()):
-			if layer_i == 0 or layer_i == glayers.size() - 1:
-				continue
-			selected_x = layer_i
-			selected_y = child_i
-			queue_redraw()
+	test([1,1],true)
 
 func show_connections(pos_x, pos_y):
 	selected_x = pos_x
@@ -133,6 +131,8 @@ var output_layer = null
 var perceptrons_per_layer = []
 var input_count = 0
 var output_count = 0
+var training_data = []
+var training_outputs = []
 
 
 func init(i_learning_rate=0.1, i_momentum = 0, i_step_bipolar_threshold = 0, i_identity_a = 1, i_parametric_a = 0.1):
@@ -174,10 +174,17 @@ func load_csv(i_path):
 		for j in dirty.records[i].size():
 			values[i].append(float(dirty.records[i][j]))
 	for i in values.size():
-		for j in input_count:
-			output.append(values[i].pop_back())
+		output.append([])
+		for j in output_layer.child_count():
+			output[i].append(values[i].pop_back())
 	data = values
-	return [data, output]
+	if data[0].size() != input_layer.children.size() or output[0].size() != output_layer.children.size():
+		print("Size mismatch")
+		return
+	Objects.VALID_CSV_DATA = true
+	training_data = data
+	training_outputs = output
+	#return [data, output]
 		
 
 func test(i_inputs, i_verbose):
@@ -274,3 +281,11 @@ func setup(i_inputs = 1, i_perc_layers = 1):
 		else:
 			layers[i].left_layer = layers[i - 1]
 			layers[i].right_layer = layers[i + 1]
+
+func is_running(run):
+	for i in layers.size():
+		layers[i].is_running(run)
+
+func zero_weights():
+	for i in perc_layers.size():
+		perc_layers[i].zero_weights()

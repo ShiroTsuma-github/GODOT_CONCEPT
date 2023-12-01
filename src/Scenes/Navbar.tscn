@@ -104,22 +104,27 @@ layout_mode = 2
 texture = ExtResource("1_bk7gd")
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
 layout_mode = 2
-text = "PERCEPTRONS"
+text = "WEIGHTS"
 
 [node name="SpinBox2" type="SpinBox" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
+visible = false
 layout_mode = 2
 
 [node name="SpinBox" type="SpinBox" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
+visible = false
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
+[node name="bRandomize" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
 layout_mode = 2
-text = "SET"
+text = "RANDOMIZE"
+
+[node name="bZero" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer7"]
+layout_mode = 2
+text = "ZERO"
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
 visible = false
@@ -130,6 +135,7 @@ layout_mode = 2
 texture = ExtResource("1_bk7gd")
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/VBoxContainer9"]
@@ -165,11 +171,13 @@ text = "START"
 layout_mode = 2
 text = "STEP (F11)"
 
-[node name="Button3" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer11"]
+[node name="bTest" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer11"]
 layout_mode = 2
-text = "RUN"
+text = "TEST"
 
 [connection signal="pressed" from="MarginContainer2/HBoxContainer/FileOptions/GuzikNowy" to="." method="_on_guzik_nowy_pressed"]
 [connection signal="pressed" from="MarginContainer2/HBoxContainer/FileOptions/GuzikLoad" to="." method="_on_guzik_load_pressed"]
 [connection signal="pressed" from="MarginContainer2/HBoxContainer/DataOptions/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer11/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer7/bRandomize" to="." method="_on_b_randomize_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer7/bZero" to="." method="_on_b_zero_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer11/bTest" to="." method="_on_b_test_pressed"]

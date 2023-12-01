@@ -87,5 +87,20 @@ text = "[center][font_size={14}]%.3f[/font_size][/center]"
 scroll_active = false
 script = ExtResource("5_pwk1r")
 
+[node name="Control3" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 88.0
+offset_top = 32.0
+offset_right = 128.0
+offset_bottom = 72.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control3"]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 24.0
+theme_override_colors/default_color = Color(0, 0.960784, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={14}]0[/font_size][/center]"
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

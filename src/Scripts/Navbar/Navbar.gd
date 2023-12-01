@@ -6,9 +6,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 
 func _on_guzik_nowy_pressed():
@@ -35,5 +32,20 @@ func _on_button_2_pressed():
 	add_child(test)
 
 
-func _on_button_pressed():
-	Objects.simulate_running.emit()
+
+func _on_b_zero_pressed():
+	Objects.run.emit(true)
+	Objects.weights_zeroed.emit()
+
+
+func _on_b_randomize_pressed():
+	Objects.run.emit(true)
+	Objects.weights_randomized.emit()
+
+
+func _on_b_test_pressed():
+	if Objects.VALID_CSV_DATA:
+		var tester = Objects.Base_NetworkTester.instantiate()
+		add_child(tester)
+		Objects.run.emit(true)
+		Objects.simulate_running.emit()

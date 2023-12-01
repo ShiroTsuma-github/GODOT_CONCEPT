@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://de03coe33gssj"]
+[gd_scene load_steps=2 format=3 uid="uid://de03coe33gssj"]
+
+[ext_resource type="Script" path="res://src/Scripts/FileDialog/FileDialog.gd" id="1_6nbe4"]
 
 [node name="FileDialog" type="FileDialog"]
 title = "Open a File"
@@ -9,3 +11,6 @@ content_scale_aspect = 1
 ok_button_text = "Open"
 file_mode = 0
 access = 2
+script = ExtResource("1_6nbe4")
+
+[connection signal="file_selected" from="." to="." method="_on_file_selected"]

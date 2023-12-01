@@ -140,6 +140,10 @@ func randomize_weights(ten=false):
 		else:
 			children[i].randomize_weights_around_1()
 
+func zero_weights():
+	for i in children.size():
+		children[i].zero_weights()
+
 func update_children_weights():
 	for i in children.size():
 		children[i].update_weights()
@@ -171,3 +175,7 @@ func set_child_function(i_pos_y, i_activation_function):
 
 func get_children_functions():
 	return children_functions
+
+func is_running(run):
+	for i in children.size():
+		children[i].is_running(run)

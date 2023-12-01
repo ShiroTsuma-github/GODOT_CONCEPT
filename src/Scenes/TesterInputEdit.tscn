@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4fm0ri4hc4w1"]
+
+[ext_resource type="Script" path="res://src/Scripts/InputEdit/TesterInputEdit.gd" id="1_mn22w"]
+
+[node name="InputEdit" type="HBoxContainer"]
+script = ExtResource("1_mn22w")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "input 1: "
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 2
+max_length = 10
+clear_button_enabled = true
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

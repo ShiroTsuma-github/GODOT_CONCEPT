@@ -1,5 +1,5 @@
 extends RichTextLabel
-var to_format = "[center][font_size={40}]w[/font_size][font_size={12}]%d,%d[/font_size][/center]"
+var to_format = "[center][font_size={40}]P[/font_size][font_size={12}]%d,%d[/font_size][/center]"
 @onready var parent = get_node('../..')
 
 
@@ -10,9 +10,7 @@ func _ready():
 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+
 
 func update_data():
 	var position_index = parent.position_index
