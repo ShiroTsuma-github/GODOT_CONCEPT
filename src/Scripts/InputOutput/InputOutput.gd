@@ -29,6 +29,10 @@ func _ready():
 	update_output.connect(update)
 
 
+func clear_all():
+	output = 0
+	previous_outputs = []
+
 func update():
 	var to_format = "[center][font_size={14}]%.3f[/font_size][/center]"
 	text_output.text =  to_format % [output]

@@ -51,7 +51,6 @@ func set_position_index(value):
 func set_weight(value):
 	weight = value
 
-
 func _on_area_2d_mouse_entered():
 	isHovering = true
 
@@ -122,6 +121,15 @@ var right_neighbours = []
 var sum = 0
 var type = 'perceptron'
 
+func clear_all():
+	sum_text.text = sum_to_format % 0
+	sum = 0
+	velocity_weight = []
+	error = 0
+	output = 0
+	previous_outputs = []
+	previous_difference = []
+	previous_weights = []
 
 func modify_weights(expected_output, training_set):
 	var new = []
@@ -151,6 +159,7 @@ func randomize_weights_around_1():
 	for i in weights.size():
 		new.append(rng.randf_range(-100, 100)/100.0)
 	weights = new
+	velocity_weight = Objects.mul_list(0, weights.size())
 
 func randomize_weights_around_10():
 	var new = []
@@ -158,12 +167,14 @@ func randomize_weights_around_10():
 	for i in weights.size():
 		new.append(rng.randf_range(-10, 10))
 	weights = new
+	velocity_weight = Objects.mul_list(0, weights.size())
 
 func zero_weights():
 	var new = []
 	for i in weights.size():
 		new.append(0)
 	weights = new
+	velocity_weight = Objects.mul_list(0, weights.size())
 
 func calc_error(expected_output=null):
 	if expected_output != null:

@@ -162,6 +162,7 @@ func get_output_values():
 		res.append(output_layer.children[i].output)
 
 func randomize_weights(around_ten=false):
+	clear_all()
 	for i in perc_layers.size():
 		perc_layers[i].randomize_weights(around_ten)
 
@@ -169,6 +170,7 @@ func set_children_weights(index, weights):
 	perc_layers[index].set_children_weights(weights)
 
 func load_csv(i_path):
+	print("CSV SELECTED: "+ str(i_path))
 	var test = Objects.Base_InfoPopup.instantiate()
 	add_child(test)
 	var data = []
@@ -299,9 +301,14 @@ func is_running(run):
 		layers[i].is_running(run)
 
 func zero_weights():
+	clear_all()
 	for i in perc_layers.size():
 		perc_layers[i].zero_weights()
 
+
+func clear_all():
+	for layer in layers:
+		layer.clear_all()
 
 func train_backpropagation(
 	error_threshold=0.00001,
@@ -343,10 +350,14 @@ func train_backpropagation(
 		if average_error < Objects.error_threshold:
 			break
 		if iter_count % int(Objects.limit_iter / 100) == 0:
-			test.progress()
-			test.avg_error(average_error)
-			await get_tree().create_timer(0.0001).timeout
-	test.avg_error(average_error)
-	test.set_success("TRAINING FINISHED")
+			if test != null:
+				test.progress()
+				test.avg_error(average_error)
+				await get_tree().create_timer(0.0001).timeout
+			else:
+				break
+	if test != null:
+		test.avg_error(average_error)
+		test.set_success("TRAINING FINISHED")
 
 
