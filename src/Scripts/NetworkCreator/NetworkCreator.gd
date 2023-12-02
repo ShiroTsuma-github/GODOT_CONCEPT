@@ -83,10 +83,12 @@ func _on_accept_close_button_pressed():
 	get_network_config()
 	setup_network.emit(layer_count, percpetrons_per_layer, input_count_value, layer_functions)
 	hide()
+	queue_free()
 
 
 func _on_open_examples_pressed():
-	var test = filedialog.instantiate()
+	var test = Objects.Base_FileDialog.instantiate()
+	test.set_current_path(ProjectSettings.globalize_path("res://Examples/"))
 	test.add_filter("*.nn")
 	
 	

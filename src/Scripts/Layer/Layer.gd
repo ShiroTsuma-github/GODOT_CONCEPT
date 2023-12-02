@@ -105,7 +105,7 @@ func forward_output():
 func child_count():
 	return children.size()
 
-func preprare_for_backpropagation():
+func prepare_for_backpropagation():
 	for i in children.size():
 		children[i].set_right_neighbours(right_layer.children)
 

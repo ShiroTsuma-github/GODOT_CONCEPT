@@ -6,6 +6,13 @@
 [sub_resource type="GDScript" id="GDScript_ubcgp"]
 script/source = "extends Node2D
 
+
+# zamiast w0 na gorze suma wazona
+# jak wczytasz dane do trenowania, to jakis komunikat
+# komunikat jak niepoprawne cos
+# example nie otwiera example
+# learning rate i momentum do Objects, zeby zapobiec desynchronizacji tego, przy zmianie 
+# kontrolka dla learning rate i momentum
 signal create_network
 
 var LayerCount: int = 0

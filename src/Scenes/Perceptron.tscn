@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://3lhrb41ht12"]
+[gd_scene load_steps=5 format=3 uid="uid://3lhrb41ht12"]
 
 [ext_resource type="Texture2D" uid="uid://o818qphk1r2j" path="res://resources/circle.svg" id="1_6j76k"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/Perceptron.gd" id="2_m66v4"]
 [ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronPosition.gd" id="4_ea5sm"]
-[ext_resource type="Script" path="res://src/Scripts/Perceptron/DisplayPerceptronWeight.gd" id="5_pwk1r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lg3yt"]
 radius = 48.0
@@ -83,9 +82,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 bbcode_enabled = true
-text = "[center][font_size={14}]%.3f[/font_size][/center]"
+text = "[center][font_size={14}]Σ = 0[/font_size][/center]"
 scroll_active = false
-script = ExtResource("5_pwk1r")
 
 [node name="Control3" type="Control" parent="."]
 anchors_preset = 0
@@ -96,11 +94,13 @@ offset_bottom = 72.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control3"]
 layout_mode = 0
-offset_right = 56.0
+offset_left = 16.0
+offset_right = 80.0
 offset_bottom = 24.0
-theme_override_colors/default_color = Color(0, 0.960784, 0, 1)
+theme_override_colors/default_color = Color(0, 0.709804, 0.101961, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 0.964706, 1)
 bbcode_enabled = true
-text = "[center][font_size={14}]0[/font_size][/center]"
+text = "[font_size={14}]U=0[/font_size]"
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

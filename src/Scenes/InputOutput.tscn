@@ -51,7 +51,7 @@ offset_bottom = 36.0
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 20.0
-theme_override_colors/default_color = Color(0.14902, 1, 0, 1)
+theme_override_colors/default_color = Color(0.14902, 0.541176, 0, 1)
 bbcode_enabled = true
 text = "[center][font_size={14}]%.3f[/font_size][/center]"
 scroll_active = false

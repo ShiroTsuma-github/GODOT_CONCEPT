@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://5t5fo4igqudb"]
+
+[ext_resource type="Script" path="res://src/Scripts/InformationPopup/InformationPopup.gd" id="1_f6hea"]
+
+[node name="INFORMATION" type="PopupPanel"]
+initial_position = 1
+size = Vector2i(400, 200)
+visible = true
+borderless = false
+always_on_top = true
+script = ExtResource("1_f6hea")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 196.0
+
+[node name="ERROR_TEXT" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0.827451, 0, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={40}]BŁĄD[/font_size][/center]"
+
+[node name="SUCCESS_TEXT" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0.647059, 0, 1)
+bbcode_enabled = true
+text = "[center][font_size={40}]GIT[/font_size][/center]"
+
+[node name="TRAINING_ERROR" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -57.5
+offset_top = -56.0
+offset_right = 57.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Average Error: "
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+step = 1.0
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]

@@ -18,11 +18,14 @@ var forward_dir = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	
 	Objects.Network = self
 	Objects.VALID_CSV_DATA = false
 	Objects.run.connect(is_running)
+	Objects.train.connect(train_backpropagation)
+	Objects.test.connect(test)
 	Objects.csv_selected.connect(load_csv)
-	Objects.simulate_running.connect(simulate)
 	Objects.weights_randomized.connect(randomize_weights)
 	Objects.weights_zeroed.connect(zero_weights)
 	# csetup()
@@ -74,8 +77,8 @@ func remove_layer():
 	perceptron_layer_count -= 1
 
 # do a thingie, where it will go through every valid perceptron add show connections, like it's running
-func simulate():
-	test([1,1],true)
+func simulate(test_data):
+	test(test_data,true)
 
 func show_connections(pos_x, pos_y):
 	selected_x = pos_x
@@ -118,8 +121,6 @@ func draw_connections():
 
 # NEURAL NETWORK IMPLEMENTATION
 
-var learning_rate = 0.1
-var momentum = 0
 var step_bipolar_threshold = 0
 var identity_a = 1
 var parametric_a = 0.1
@@ -136,8 +137,8 @@ var training_outputs = []
 
 
 func init(i_learning_rate=0.1, i_momentum = 0, i_step_bipolar_threshold = 0, i_identity_a = 1, i_parametric_a = 0.1):
-	learning_rate = i_learning_rate
-	momentum = i_momentum
+	Objects.learning_rate = i_learning_rate
+	Objects.momentum = i_momentum
 	step_bipolar_threshold = i_step_bipolar_threshold
 	identity_a = i_identity_a
 	parametric_a = i_parametric_a
@@ -164,7 +165,12 @@ func randomize_weights(around_ten=false):
 	for i in perc_layers.size():
 		perc_layers[i].randomize_weights(around_ten)
 
+func set_children_weights(index, weights):
+	perc_layers[index].set_children_weights(weights)
+
 func load_csv(i_path):
+	var test = Objects.Base_InfoPopup.instantiate()
+	add_child(test)
 	var data = []
 	var output = []
 	var dirty = load(i_path)
@@ -179,15 +185,19 @@ func load_csv(i_path):
 			output[i].append(values[i].pop_back())
 	data = values
 	if data[0].size() != input_layer.children.size() or output[0].size() != output_layer.children.size():
-		print("Size mismatch")
+		test.set_error("MISMATCH BETWEEN INPUT AND OUPUT COUNT FOR DATA")
+		print("size mismatch")
 		return
+	test.set_success("TRAINING DATA LOADED CORRECTLY. " + str(data.size()) + " ROWS")
 	Objects.VALID_CSV_DATA = true
 	training_data = data
 	training_outputs = output
 	#return [data, output]
 		
 
-func test(i_inputs, i_verbose):
+func test(i_inputs, i_verbose=false):
+	#i_inputs = [1,1]
+	is_running(true)
 	forward(i_inputs)
 	var results = []
 	for item in output_layer.children:
@@ -197,12 +207,12 @@ func test(i_inputs, i_verbose):
 	else:
 		print(results)
 
-func learning_rate_decay(decay_factor):
-	learning_rate -= snappedf(learning_rate * decay_factor, 0.0001)
+#func learning_rate_decay(decay_factor):
+#	learning_rate -= snappedf(learning_rate * decay_factor, 0.0001)
 
-func learning_rate_linear_reduction(original, min = 0.0001, steps=100):
-	var reduction = (original - min) / steps
-	learning_rate -= reduction
+#func learning_rate_linear_reduction(original, min = 0.0001, steps=100):
+#	var reduction = (original - min) / steps
+#	learning_rate -= reduction
 
 func forward(single_data):
 	set_input_values(single_data)
@@ -229,13 +239,15 @@ func set_perceptrons_per_layer(i_perceptrons_per_layer):
 	for i in perc_layers.size():
 		for j in i_perceptrons_per_layer[i]:
 			var obj = Objects.Base_Perceptron.instantiate()
-			obj.init(Objects.ActivationFunctions.STEP_UNIPOLAR, learning_rate, momentum)
+			obj.init(Objects.ActivationFunctions.STEP_UNIPOLAR)
 			perc_layers[i].cadd_child(obj)
 	for i in perc_layers[-1].children.size():
 		var obj = Objects.Base_InputOutput.instantiate()
 		output_layer.cadd_child(obj)
 	queue_redraw()
 	Objects.perceptron_pressed.connect(show_connections)
+	#set_children_weights(0,[[0.897, -0.27, -0.317], [0.174, 0.086, 0.291]])
+	#set_children_weights(1,[[0.988, 0.058, 0.16]])
 
 func prepare_for_backpropagation():
 	for i in perc_layers.size():
@@ -289,3 +301,52 @@ func is_running(run):
 func zero_weights():
 	for i in perc_layers.size():
 		perc_layers[i].zero_weights()
+
+
+func train_backpropagation(
+	error_threshold=0.00001,
+	decay_learning_rate=false,
+	decay_factor=0.1,
+	epoch_decay_step=10,
+	linear_reduction_learning_rate=false,
+	linear_min=0.0001,
+	linear_steps=100):
+	is_running(true)
+	var test = Objects.Base_InfoPopup.instantiate()
+	add_child(test)
+	test.empty()
+	var original_learning_rate = Objects.learning_rate
+	prepare_for_backpropagation()
+	var iter_count = 0
+	var indexes = []
+	var data_to_train = []
+	var outputs_to_train = []
+	var error = 0
+	var total_error = 0
+	var average_error = 0
+	for i in training_data.size():
+		indexes.append(i)
+	while iter_count < Objects.limit_iter:
+		iter_count += 1
+		total_error = 0
+		randomize()
+		indexes.shuffle()
+		for index in indexes:
+			data_to_train.append(training_data[index])
+			outputs_to_train.append(training_outputs[index])
+		for i in data_to_train.size():
+			forward(data_to_train[i])
+			error = propagate_error(outputs_to_train[i])
+			total_error += error * error
+			update_weights()
+		average_error = total_error / data_to_train.size()
+		if average_error < Objects.error_threshold:
+			break
+		if iter_count % int(Objects.limit_iter / 100) == 0:
+			test.progress()
+			test.avg_error(average_error)
+			await get_tree().create_timer(0.0001).timeout
+	test.avg_error(average_error)
+	test.set_success("TRAINING FINISHED")
+
+
