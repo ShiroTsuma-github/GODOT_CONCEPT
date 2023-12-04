@@ -7,6 +7,7 @@ signal update_output
 var type = 'InputOutput'
 var isRunning = false
 var display: bool = isRunning
+var index = 1
 # NEURAL NETWORK IMPLEMENTATION
 
 var previous_outputs = []

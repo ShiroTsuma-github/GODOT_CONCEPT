@@ -6,31 +6,26 @@
 [sub_resource type="GDScript" id="GDScript_ubcgp"]
 script/source = "extends Node2D
 
+# NETWORK AS GRAPH NODE???
 
-# zamiast w0 na gorze suma wazona
-# jak wczytasz dane do trenowania, to jakis komunikat
-# komunikat jak niepoprawne cos
-# example nie otwiera example
-# learning rate i momentum do Objects, zeby zapobiec desynchronizacji tego, przy zmianie 
-# kontrolka dla learning rate i momentum
+
+
 signal create_network
 
 var LayerCount: int = 0
 var PerceptronsPerLayer: Array = []
 var InputCount: int = 1
 var functions = []
+var inspector = null
 
 @onready var NetworkContainer = get_node(\"MarginContainer/ScrollContainer/MarginContainer\")
 # @onready var Network = get_node(\"MarginContainer/ScrollContainer/Network\")
 var Network = null 
 @onready var navbar = get_node(\"Navbar\")
-@onready var inspector = Objects.Base_Inspector.instantiate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Objects.create_inspector.connect(create_inspector)
-	add_child(inspector)
-	inspector.visible = false
 	navbar.visible = false
 	var size = get_viewport_rect()
 	var start_window = Objects.Base_Start_Window.instantiate()
@@ -43,7 +38,6 @@ func forward_signal(param1, param2, param3, param4):
 		NetworkContainer.remove_child(n)
 		n.queue_free()
 	navbar.visible = true
-	inspector.get_node('InspectorRight').visible = true
 	LayerCount = param1
 	PerceptronsPerLayer = param2
 	InputCount = param3
@@ -54,9 +48,12 @@ func forward_signal(param1, param2, param3, param4):
 	Network.set_perceptrons_per_layer(PerceptronsPerLayer)
 	Network.set_activation_functions(functions)
 
-func create_inspector():
-	inspector.visible = true
-	inspector.get_node('InspectorLeft').visible = false
+func create_inspector(object):
+	if inspector != null:
+		inspector.queue_free()
+	inspector = Objects.Base_Inspector.instantiate()
+	inspector.object = object
+	add_child(inspector)
 	print(\"inspectoring\")
 	pass
 "

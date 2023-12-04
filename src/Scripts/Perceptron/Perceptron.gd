@@ -22,6 +22,7 @@ extends TextureRect
 
 var weight_history: Array = [weight]
 var isHovering: bool = false
+var index = 1
 var sum_to_format = "[center][font_size={14}]Σ = %.3f[/font_size][/center]"
 @onready var sum_text = get_node("Control2/RichTextLabel")
 @onready var center = get_node('Area2D').global_position
@@ -61,7 +62,7 @@ func _on_area_2d_mouse_exited():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and isHovering:
-			# Objects.create_inspector.emit()
+			Objects.create_inspector.emit(self)
 			Objects.perceptron_pressed.emit(pos_x, pos_y)
 
 
@@ -198,8 +199,6 @@ func calc_error(expected_output=null):
 	return error
 
 func calc_sum():
-	if left_neighbours[0].output == null or left_neighbours[1].output == null or left_neighbours[2].output == null:
-		print("Error at P" + str(pos_x) + str(pos_y))
 	var sum_ = 0.0
 	for i in weights.size():
 		sum_ += left_neighbours[i].output * weights[i]
@@ -289,6 +288,7 @@ func calc_softplus_der():
 
 func get_output():
 	calc_sum()
+	#Objects.perceptron_pressed.emit(pos_x, pos_y)
 	if activation_function == Objects.ActivationFunctions.IDENTITY:
 		return calc_identity()
 	elif activation_function == Objects.ActivationFunctions.RELU:

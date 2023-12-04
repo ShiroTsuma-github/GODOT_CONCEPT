@@ -1,5 +1,5 @@
 extends RichTextLabel
-var to_format = "[center][font_size={40}]P[/font_size][font_size={12}]%d,%d[/font_size][/center]"
+var to_format = "[center][font_size={40}]P[/font_size][font_size={12}]%d[/font_size][/center]"
 @onready var parent = get_node('../..')
 
 
@@ -13,6 +13,6 @@ func _ready():
 
 
 func update_data():
-	var position_index = parent.position_index
-	var weight_index = parent.weight_index
-	text =  to_format % [position_index,weight_index]
+	#var position_index = parent.position_index
+	#var weight_index = parent.weight_index
+	text =  to_format % [parent.index]

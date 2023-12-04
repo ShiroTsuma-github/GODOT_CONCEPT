@@ -1,6 +1,6 @@
 extends Node
 
-signal create_inspector
+signal create_inspector(object)
 signal perceptron_pressed(pos_x, pos_y)
 signal weights_randomized
 signal weights_zeroed

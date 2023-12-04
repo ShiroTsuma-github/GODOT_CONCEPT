@@ -1,12 +1,16 @@
-[gd_scene format=3 uid="uid://bjjjqx4db81bj"]
+[gd_scene load_steps=2 format=3 uid="uid://bjjjqx4db81bj"]
+
+[ext_resource type="Script" path="res://src/Scripts/Inspector/Inspector.gd" id="1_3nlyi"]
 
 [node name="InspectorParent" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_3nlyi")
 
 [node name="InspectorLeft" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 280.0
 offset_bottom = 960.0
@@ -56,20 +60,36 @@ size_flags_horizontal = 3
 text = "Perceptron %f"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Input:     "
-
-[node name="SpinBox" type="SpinBox" parent="InspectorRight/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
-min_value = -1000.0
-max_value = 1000.0
+text = "Activation Function:"
+horizontal_alignment = 1
+
+[node name="LActivation" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Weights:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="ScrollContainer" parent="InspectorRight/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 100)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="InspectorRight/MarginContainer/VBoxContainer/HBoxContainer3"]
@@ -79,11 +99,11 @@ text = "Current input: %f"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Previous Inputs"
+text = "Previous Weights"
 horizontal_alignment = 1
 
 [node name="Control" type="Control" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer"]
@@ -105,7 +125,7 @@ theme_override_constants/separation = 10
 [node name="RichTextLabel" type="RichTextLabel" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/Control/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
-text = "Some input : %f"
+text = "Some weight : %f"
 fit_content = true
 scroll_active = false
 
@@ -192,3 +212,31 @@ layout_mode = 2
 text = "Some input : %f"
 fit_content = true
 scroll_active = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Error: "
+
+[node name="Label2" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "wartosc"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Derivative"
+
+[node name="Label2" type="Label" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "wartosc"
+
+[node name="Button" type="Button" parent="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "CLOSE"
+
+[connection signal="pressed" from="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

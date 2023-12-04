@@ -134,6 +134,7 @@ var input_count = 0
 var output_count = 0
 var training_data = []
 var training_outputs = []
+var moving_i = 1
 
 
 func init(i_learning_rate=0.1, i_momentum = 0, i_step_bipolar_threshold = 0, i_identity_a = 1, i_parametric_a = 0.1):
@@ -185,12 +186,14 @@ func load_csv(i_path):
 		output.append([])
 		for j in output_layer.child_count():
 			output[i].append(values[i].pop_back())
+		output[i].reverse()
 	data = values
 	if data[0].size() != input_layer.children.size() or output[0].size() != output_layer.children.size():
 		test.set_error("MISMATCH BETWEEN INPUT AND OUPUT COUNT FOR DATA")
 		print("size mismatch")
 		return
 	test.set_success("TRAINING DATA LOADED CORRECTLY. " + str(data.size()) + " ROWS")
+	# GETY RID OF DATA WITH TRAILING EMPTY LENGTH
 	Objects.VALID_CSV_DATA = true
 	training_data = data
 	training_outputs = output
@@ -224,6 +227,7 @@ func forward(single_data):
 
 func propagate_error(single_output):
 	var total_error = 0
+	#single_output.reverse()
 	total_error += perc_layers[-1].calc_errors(single_output)
 	for i in range(perc_layers.size() - 2, -1, -1):
 		total_error += perc_layers[i].calc_errors()
@@ -242,9 +246,13 @@ func set_perceptrons_per_layer(i_perceptrons_per_layer):
 		for j in i_perceptrons_per_layer[i]:
 			var obj = Objects.Base_Perceptron.instantiate()
 			obj.init(Objects.ActivationFunctions.STEP_UNIPOLAR)
+			obj.index = moving_i
+			moving_i += 1
 			perc_layers[i].cadd_child(obj)
 	for i in perc_layers[-1].children.size():
 		var obj = Objects.Base_InputOutput.instantiate()
+		obj.index = moving_i
+		moving_i += 1
 		output_layer.cadd_child(obj)
 	queue_redraw()
 	Objects.perceptron_pressed.connect(show_connections)
@@ -286,6 +294,8 @@ func setup(i_inputs = 1, i_perc_layers = 1):
 	output_layer = layers[-1]
 	for i in i_inputs:
 		var input = Objects.Base_InputOutput.instantiate()
+		input.index = moving_i
+		moving_i += 1
 		layers[0].cadd_child(input)
 	for i in layers.size():
 		if i == 0:
