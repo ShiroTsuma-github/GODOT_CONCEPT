@@ -1,7 +1,7 @@
 extends TextureRect
 
 
-
+@onready var nazwa = get_node("Label")
 @onready var text_output = get_node("Control2/RichTextLabel")
 signal update_output
 var type = 'InputOutput'
@@ -54,6 +54,10 @@ func _on_area_2d_mouse_entered():
 
 func _on_area_2d_mouse_exited():
 	isHovering = false
+
+
+func set_nazwa(text):
+	nazwa.text = str(text)
 
 
 func _input(event):

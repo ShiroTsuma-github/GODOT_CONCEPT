@@ -261,14 +261,6 @@ size_flags_horizontal = 3
 text = "Input / Output"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="InspectorRight/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="InspectorRight/MarginContainer2/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-placeholder_text = "Nazwa"
-
 [node name="Label2" type="Label" parent="InspectorRight/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -317,5 +309,4 @@ layout_mode = 2
 text = "CLOSE"
 
 [connection signal="pressed" from="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="text_changed" from="InspectorRight/MarginContainer2/VBoxContainer/HBoxContainer2/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

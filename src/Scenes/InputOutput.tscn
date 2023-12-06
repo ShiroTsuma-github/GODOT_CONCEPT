@@ -57,5 +57,18 @@ text = "[center][font_size={14}]%.3f[/font_size][/center]"
 scroll_active = false
 script = ExtResource("4_gth1m")
 
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = 1.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

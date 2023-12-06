@@ -252,6 +252,8 @@ func set_perceptrons_per_layer(i_perceptrons_per_layer):
 	for i in perc_layers[-1].children.size():
 		var obj = Objects.Base_InputOutput.instantiate()
 		obj.index = moving_i
+		obj.pos_x = output_layer.pos_x
+		obj.pos_y = output_layer.child_count()
 		moving_i += 1
 		output_layer.cadd_child(obj)
 	queue_redraw()
@@ -294,6 +296,8 @@ func setup(i_inputs = 1, i_perc_layers = 1):
 	output_layer = layers[-1]
 	for i in i_inputs:
 		var input = Objects.Base_InputOutput.instantiate()
+		input.pos_x = 0
+		input.pos_y = layers[0].child_count()
 		input.index = moving_i
 		moving_i += 1
 		layers[0].cadd_child(input)

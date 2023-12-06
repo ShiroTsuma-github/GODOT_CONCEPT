@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bghuicsgtoey6"]
+[gd_scene load_steps=5 format=3 uid="uid://bghuicsgtoey6"]
 
 [ext_resource type="Texture2D" uid="uid://dfmqcodvfuqts" path="res://resources/background.svg" id="1_ok0wd"]
 [ext_resource type="PackedScene" uid="uid://bgi0c5oe58vha" path="res://src/Scenes/Navbar.tscn" id="2_se3sb"]
+[ext_resource type="Texture2D" uid="uid://jf6tl6k14kds" path="res://resources/toolbar.svg" id="3_wkm20"]
 
 [sub_resource type="GDScript" id="GDScript_ubcgp"]
 script/source = "extends Node2D
@@ -86,4 +87,4 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 100
 
 [node name="Navbar" parent="." instance=ExtResource("2_se3sb")]
-visible = false
+texture = ExtResource("3_wkm20")

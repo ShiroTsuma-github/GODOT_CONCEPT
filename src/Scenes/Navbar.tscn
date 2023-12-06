@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" path="res://src/Scripts/Navbar/Navbar.gd" id="1_8beqj"]
 [ext_resource type="Texture2D" uid="uid://d4m2tf8ytlfk2" path="res://resources/square.svg" id="1_bk7gd"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_foxk2"]
+[ext_resource type="Texture2D" uid="uid://jf6tl6k14kds" path="res://resources/toolbar.svg" id="1_cbc73"]
 
 [node name="Navbar" type="TextureRect"]
 custom_minimum_size = Vector2(200, 200)
 offset_right = 1280.0
 offset_bottom = 200.0
-texture = SubResource("PlaceholderTexture2D_foxk2")
+texture = ExtResource("1_cbc73")
 script = ExtResource("1_8beqj")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -47,6 +46,7 @@ layout_mode = 2
 text = "SAVE"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(2, 30)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer/VBoxContainer3"]
