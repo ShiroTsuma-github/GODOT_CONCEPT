@@ -7,7 +7,7 @@
 script/source = "extends Node2D
 
 # NETWORK AS GRAPH NODE???
-
+#when checking outputs match them with inputs on network
 
 
 signal create_network

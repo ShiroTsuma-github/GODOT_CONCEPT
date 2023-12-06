@@ -56,3 +56,6 @@ bbcode_enabled = true
 text = "[center][font_size={14}]%.3f[/font_size][/center]"
 scroll_active = false
 script = ExtResource("4_gth1m")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

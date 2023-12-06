@@ -40,6 +40,7 @@ offset_right = 1280.0
 offset_bottom = 960.0
 
 [node name="MarginContainer" type="MarginContainer" parent="InspectorRight"]
+visible = false
 layout_mode = 0
 offset_right = 280.0
 offset_bottom = 960.0
@@ -239,4 +240,73 @@ text = "wartosc"
 layout_mode = 2
 text = "CLOSE"
 
+[node name="MarginContainer2" type="MarginContainer" parent="InspectorRight"]
+offset_right = 280.0
+offset_bottom = 960.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InspectorRight/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InspectorRight/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="InspectorRight/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Input / Output"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="InspectorRight/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Output:"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="InspectorRight/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "asdas"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="InspectorRight/MarginContainer2/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InspectorRight/MarginContainer2/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(240, 30)
+layout_mode = 2
+text = "Current input: %f"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InspectorRight/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Previous Outputs:"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 440)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer/Control"]
+custom_minimum_size = Vector2(240, 440)
+layout_mode = 2
+offset_top = -4.0
+offset_right = 240.0
+offset_bottom = 249.0
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer/Control/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "CLOSE"
+
 [connection signal="pressed" from="InspectorRight/MarginContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="InspectorRight/MarginContainer2/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

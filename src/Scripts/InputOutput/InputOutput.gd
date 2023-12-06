@@ -8,6 +8,7 @@ var type = 'InputOutput'
 var isRunning = false
 var display: bool = isRunning
 var index = 1
+var isHovering
 # NEURAL NETWORK IMPLEMENTATION
 
 var previous_outputs = []
@@ -45,3 +46,17 @@ func is_running(run):
 	text_output.visible = run
 	isRunning = run
 	display = run
+
+
+func _on_area_2d_mouse_entered():
+	isHovering = true
+
+
+func _on_area_2d_mouse_exited():
+	isHovering = false
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and isHovering:
+			Objects.create_inspector.emit(self)
